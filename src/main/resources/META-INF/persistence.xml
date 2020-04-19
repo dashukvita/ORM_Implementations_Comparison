@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="1.0">
+
+    <persistence-unit name="jpa-openjpa" transaction-type="RESOURCE_LOCAL">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <class>ru.jpa.Tests.TestPerson.model.Person</class>
+        <class>ru.jpa.Tests.TestCollectionPerson.model.PersonCollection</class>
+        <class>ru.jpa.Tests.TestCollectionPerson.model.AddressCollection</class>
+        <class>ru.jpa.Tests.TestIndexedPerson.model.PersonIndexed</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.AbstractIdentifiableObject</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.PersonBase</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.PersonExt</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.PersonExtExt</class>
+        <class>ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany</class>
+        <class>ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany</class>
+        <class>ru.jpa.Tests.TestJPQLPerson.model.SimplePerson</class>
+        <properties>
+            <property name="openjpa.Log" value="File=openjpa.log, DefaultLevel=WARN, Runtime=INFO, Tool=INFO"/>
+            <property name="openjpa.DynamicEnhancementAgent" value="true"/>
+            <property name="openjpa.RuntimeUnenhancedClasses" value="supported" />
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/postgres" />
+            <property name="openjpa.ConnectionUserName" value="postgres" />
+            <property name="openjpa.ConnectionPassword" value="12345" />
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="jpa_eclipselink" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>ru.jpa.Tests.TestPerson.model.Person</class>
+        <class>ru.jpa.Tests.TestCollectionPerson.model.PersonCollection</class>
+        <class>ru.jpa.Tests.TestCollectionPerson.model.AddressCollection</class>
+        <class>ru.jpa.Tests.TestIndexedPerson.model.PersonIndexed</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.AbstractIdentifiableObject</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.PersonBase</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.PersonExt</class>
+        <class>ru.jpa.Tests.TestInheritancePerson.model.PersonExtExt</class>
+        <class>ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany</class>
+        <class>ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany</class>
+        <class>ru.jpa.Tests.TestJPQLPerson.model.SimplePerson</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+            <property name="javax.persistence.jdbc.user" value="postgres" />
+            <property name="javax.persistence.jdbc.password" value="12345" />
+            <property name="eclipselink.logging.file" value="eclipselink.log"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

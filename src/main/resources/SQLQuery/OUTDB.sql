@@ -1,0 +1,10 @@
+drop table person;
+drop table personCol;
+drop table addressCol;
+drop table addressOtM;
+drop table personOtM;
+drop table personBase;
+drop table personExt;
+drop table personExtExt;
+drop table simplePerson;
+drop table personindexed

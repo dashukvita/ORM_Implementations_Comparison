@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ru.mapper.mybatis.AddressOneToManyMapper" >
+    <resultMap id="addressResult" type="addressOtM">
+        <id property="address_id" column="address_id" />
+        <result property="street" column="street"/>
+        <result property="city" column="city"/>
+        <result property="zip" column="zip"/>
+        <result property="country" column="country"/>
+
+        <association column="person_id" javaType="ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany"
+                     select="PersonOneToManyMapper.queryById"
+                     property="person_id"/>
+    </resultMap>
+
+    <select id="queryListByPersonId" resultType="ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany">
+        select * from addressOtM where person_id = #{person_id}
+    </select>
+
+    <insert id="insertPerson" useGeneratedKeys="true" keyProperty="address_id">
+        INSERT into addressOtM(person_id, street, city, zip, country)
+        VALUES(#{person_id},#{street},#{city},#{zip},#{country});
+    </insert>
+</mapper>

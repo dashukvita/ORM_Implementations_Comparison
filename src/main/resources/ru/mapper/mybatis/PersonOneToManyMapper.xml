@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ru.mapper.mybatis.PersonOneToManyMapper">
+    <resultMap id="personResultMap" type="personOtM">
+        <id property="person_id" column="person_id"/>
+        <result property="firstName" column="firstName"/>
+        <result property="middleName" column="middleName"/>
+        <result property="lastName" column="lastName"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="birthDate" column="birthDate"/>
+        <result property="joinDate" column="joinDate"/>
+        <result property="lastLoginDate" column="lastLoginDate"/>
+        <result property="loginCount" column="loginCount"/>
+
+        <collection property="addresses" column="person_id"
+                    select="AddressOneToManyMapper.queryListByPersonId">
+        </collection>
+    </resultMap>
+
+    <insert id="insertPerson" parameterType="person" keyProperty="person_id" useGeneratedKeys="true">
+        INSERT into personOtM(firstName, middleName, lastName, phone, email, birthDate, joinDate, lastLoginDate, loginCount)
+        VALUES(#{firstName}, #{middleName}, #{lastName}, #{phone}, #{email}, #{birthDate}, #{joinDate}, #{lastLoginDate}, #{loginCount});
+    </insert>
+    <update id="updatePerson" parameterType="person">
+        UPDATE personOtM SET firstName=#{firstName};
+    </update>
+    <delete id="deletePerson" parameterType="person">
+        DELETE FROM personOtM;
+    </delete>
+    <select id="findAllPersons" statementType="PREPARED" resultMap="personResult">
+        SELECT * FROM personOtM;
+    </select>
+</mapper>

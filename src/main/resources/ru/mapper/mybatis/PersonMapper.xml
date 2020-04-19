@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PersonMapper" >
+    <resultMap id="personResult" type="person">
+        <id property="id" column="id" />
+        <result property="firstName" column="firstName"/>
+        <result property="middleName" column="middleName"/>
+        <result property="lastName" column="lastName"/>
+        <result property="street" column="street"/>
+        <result property="city" column="city"/>
+        <result property="zip" column="zip"/>
+        <result property="country" column="country"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="birthDate" column="birthDate"/>
+        <result property="joinDate" column="joinDate"/>
+        <result property="lastLoginDate" column="lastLoginDate"/>
+        <result property="loginCount" column="loginCount"/>
+    </resultMap>
+    <insert id="insertPerson" parameterType="person"  keyProperty="id" useGeneratedKeys="true">
+        INSERT into person(firstName, middleName, lastName, street, city, zip, country, phone, email, birthDate, joinDate, lastLoginDate, loginCount)
+        VALUES(#{firstName}, #{middleName}, #{lastName}, #{street}, #{city}, #{zip}, #{country}, #{phone}, #{email}, #{birthDate}, #{joinDate}, #{lastLoginDate}, #{loginCount});
+    </insert>
+    <update id="updatePerson" parameterType="person">
+        UPDATE person SET firstName=#{firstName};
+    </update>
+    <delete id="deletePerson" parameterType="person">
+        DELETE FROM person;
+    </delete>
+    <select id="findLastPerson" parameterType="person" resultMap="personResult">
+        SELECT * FROM person WHERE id=#{id};
+    </select>
+    <select id="findAllPersons" statementType="PREPARED" resultMap="personResult">
+        SELECT * FROM person;
+    </select>
+</mapper>
