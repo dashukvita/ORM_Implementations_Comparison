@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="PersonMapper" >
+<mapper namespace="ru.mapper.mybatis.PersonMapper" >
     <resultMap id="personResult" type="person">
         <id property="id" column="id" />
         <result property="firstName" column="firstName"/>
@@ -26,12 +26,9 @@
     <update id="updatePerson" parameterType="person">
         UPDATE person SET firstName=#{firstName};
     </update>
-    <delete id="deletePerson" parameterType="person">
-        DELETE FROM person;
+    <delete id="deletePersonById" parameterType="person">
+        DELETE FROM person where id = #{id};
     </delete>
-    <select id="findLastPerson" parameterType="person" resultMap="personResult">
-        SELECT * FROM person WHERE id=#{id};
-    </select>
     <select id="findAllPersons" statementType="PREPARED" resultMap="personResult">
         SELECT * FROM person;
     </select>

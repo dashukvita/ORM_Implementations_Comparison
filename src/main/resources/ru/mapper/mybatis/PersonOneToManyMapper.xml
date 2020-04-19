@@ -20,17 +20,18 @@
         </collection>
     </resultMap>
 
-    <insert id="insertPerson" parameterType="person" keyProperty="person_id" useGeneratedKeys="true">
+    <insert id="insertPerson" parameterType="personOtM" keyProperty="person_id" useGeneratedKeys="true">
         INSERT into personOtM(firstName, middleName, lastName, phone, email, birthDate, joinDate, lastLoginDate, loginCount)
         VALUES(#{firstName}, #{middleName}, #{lastName}, #{phone}, #{email}, #{birthDate}, #{joinDate}, #{lastLoginDate}, #{loginCount});
     </insert>
-    <update id="updatePerson" parameterType="person">
+    <update id="updatePerson" parameterType="personOtM">
         UPDATE personOtM SET firstName=#{firstName};
     </update>
-    <delete id="deletePerson" parameterType="person">
-        DELETE FROM personOtM;
+
+    <delete id="deletePersonById" parameterType="personOtM">
+        DELETE FROM personOtM where person_id = #{person_id};
     </delete>
-    <select id="findAllPersons" statementType="PREPARED" resultMap="personResult">
+    <select id="findAllPersons" resultType="ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany">
         SELECT * FROM personOtM;
     </select>
 </mapper>

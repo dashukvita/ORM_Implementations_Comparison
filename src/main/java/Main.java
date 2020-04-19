@@ -1,108 +1,96 @@
-import org.apache.ibatis.session.SqlSession;
-import ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany;
-import ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany;
-import ru.jpa.Tests.TestOneToManyPerson.test.EclipseLinkTestPersonOneToMany;
-import ru.jpa.Tests.TestOneToManyPerson.test.HibernateTestPersonOneToMany;
-import ru.jpa.Tests.TestOneToManyPerson.test.MyBatisTestPersonOneToMany;
-import ru.jpa.Tests.TestOneToManyPerson.test.OpenJPATestPersonOneToMany;
-import ru.jpa.utils.MyBatisUtil;
+import ru.jpa.tests.TestCollectionPerson.test.EclipseLinkTestPersonCollection;
+import ru.jpa.tests.TestCollectionPerson.test.HibernateTestPersonCollection;
+import ru.jpa.tests.TestCollectionPerson.test.OpenJPATestPersonCollection;
+import ru.jpa.tests.TestIndexedPerson.test.EclipseLinkTestPersonIndexed;
+import ru.jpa.tests.TestIndexedPerson.test.HibernateTestPersonIndexed;
+import ru.jpa.tests.TestIndexedPerson.test.MyBatisTestPersonIndexed;
+import ru.jpa.tests.TestIndexedPerson.test.OpenJPATestPersonIndexed;
+import ru.jpa.tests.TestInheritancePerson.test.EclipseLinkTestPersonExt;
+import ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt;
+import ru.jpa.tests.TestInheritancePerson.test.OpenJPATestPersonExt;
+import ru.jpa.tests.TestJPQLPerson.test.EclipseLinkTestPersonJPQL;
+import ru.jpa.tests.TestJPQLPerson.test.HibernateTestPersonHQL;
+import ru.jpa.tests.TestJPQLPerson.test.OpenJPATestPersonJPQL;
+import ru.jpa.tests.TestOneToManyPerson.test.EclipseLinkTestPersonOneToMany;
+import ru.jpa.tests.TestOneToManyPerson.test.MyBatisTestPersonOneToMany;
+import ru.jpa.tests.TestOneToManyPerson.test.OpenJPATestPersonOneToMany;
+import ru.jpa.tests.TestPerson.test.EclipseLinkTestPerson;
+import ru.jpa.tests.TestPerson.test.HibernateTestPerson;
+import ru.jpa.tests.TestPerson.test.MyBatisTestPerson;
+import ru.jpa.tests.TestPerson.test.OpenJPATestPerson;
+import ru.jpa.tests.imp.CrudEntitier;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) {
+        List<Integer> testAmounts = Arrays.asList(10);
+        List<List<CrudEntitier>> allORMTest = initializeTest();
 
-        new MyBatisTestPersonOneToMany().createPerson();
-//        new HibernateTestPersonOneToMany().crudEntity(10);
+        for (List<CrudEntitier> ormTest: allORMTest) {
+            runTests(testAmounts, ormTest);
+        }
 
-//        Test Person Indexed
-        //CRUD for 10 Persons
-//        new HibernateTestPersonIndexed().crudEntity(10);
-//        new EclipseLinkTestPersonIndexed().crudEntity(10);
-//        new OpenJPATestPersonIndexed().crudEntity(10);
-//        new MyBatisTestPersonIndexed().crudEntity(10);
-//      //CRUD for 1000 Persons
-//        new HibernateTestPersonIndexed().crudEntity(1000)
-//        new EclipseLinkTestPersonIndexed().crudEntity(1000);
-//        new OpenJPATestPersonIndexed().crudEntity(1000);
-//        new MyBatisTestPersonIndexed().crudEntity(1000);
-//      //CRUD for 10000 Persons
-//        new HibernateTestPersonIndexed().crudEntity(10000)
-//        new EclipseLinkTestPersonIndexed().crudEntity(10000);
-//        new OpenJPATestPersonIndexed().crudEntity(10000);
-//        new MyBatisTestPersonIndexed().crudEntity(10000);
-
-//        Test JPQL
-        //CRUD for 10 Persons
-//        new HibernateTestPersonHQL().crudEntity(10);
-//        new EclipseLinkTestPersonJPQL().crudEntity(10);
-//        new OpenJPATestPersonJPQL().crudEntity(10);
-//      //CRUD for 1000 Persons
-//        new HibernateTestPersonHQL().crudEntity(1000);
-//        new EclipseLinkTestPersonJPQL().crudEntity(1000);
-//        new OpenJPATestPersonJPQL().crudEntity(1000);
-//      //CRUD for 10000 Persons
-//        new HibernateTestPersonHQL().crudEntity(10000);
-//        new EclipseLinkTestPersonJPQL().crudEntity(10000);
-//        new OpenJPATestPersonJPQL().crudEntity(10000);
-
-//        Test Inheritance
-        //CRUD for 10 Persons
-//        new HibernateTestPersonExt().crudEntity(10);
-//        new OpenJPATestPersonExt().crudEntity(10);
-//        new EclipseLinkTestPersonExt().crudEntity(10);
-//      //CRUD for 1000 Persons
-//        new HibernateTestPersonExt().crudEntity(1000);
-//        new OpenJPATestPersonExt().crudEntity(1000);
-//        new EclipseLinkTestPersonExt().crudEntity(1000);
-//        //CRUD for 10000 Persons
-//        new HibernateTestPersonExt().crudEntity(10000);
-//        new OpenJPATestPersonExt().crudEntity(10000);
-//        new EclipseLinkTestPersonExt().crudEntity(10000);
-
-        //Collection Test Person
-        //CRUD for 10 Persons
-//        new HibernateTestPersonCollection().crudEntity(10);
-//        new EclipseLinkTestPersonCollection().crudEntity(10);
-//        new OpenJPATestPersonCollection().crudEntity(10);
-//      //CRUD for 1000 Persons
-//        new HibernateTestPersonCollection().crudEntity(1000);
-//        new EclipseLinkTestPersonCollection().crudEntity(1000);
-//        new OpenJPATestPersonCollection().crudEntity(1000);
-//        //CRUD for 10000 Persons
-//        new HibernateTestPersonCollection().crudEntity(10000);
-//        new EclipseLinkTestPersonCollection().crudEntity(10000);
-//        new OpenJPATestPersonCollection().crudEntity(10000);
-
-        //One to Many Test Person
-        //CRUD for 10 Persons
-//        new HibernateTestPersonOneToMany().crudEntity(10);
-//        new OpenJPATestPersonOneToMany().crudEntity(10);
-//        new EclipseLinkTestPersonOneToMany().crudEntity(10);
-//      //CRUD for 1000 Persons
-//        new HibernateTestPersonOneToMany().crudEntity(1000);
-//        new OpenJPATestPersonOneToMany().crudEntity(1000);
-//        new EclipseLinkTestPersonOneToMany().crudEntity(1000);
-//      //CRUD for 10000 Persons
-//        new HibernateTestPersonOneToMany().crudEntity(10000);
-//        new OpenJPATestPersonOneToMany().crudEntity(10000);
-//        new EclipseLinkTestPersonOneToMany().crudEntity(10000);
-
-        //Basic Test Person
-        //CRUD for 10 Persons
-//        new HibernateTestPerson().crudEntity(10);
-//        new EclipseLinkTestPerson().crudEntity(10);
-//        new OpenJPATestPerson().crudEntity(10);
-//        new MyBatisTestPerson().crudEntity(10);
-//      //CRUD for 1000 Persons
-//        new HibernateTestPerson().crudEntity(1000);
-//        new EclipseLinkTestPerson().crudEntity(1000);
-//        new OpenJPATestPerson().crudEntity(1000);
-//        new MyBatisTestPerson().crudEntity(1000);
-//      //CRUD for 10000 Persons
-//        new HibernateTestPerson().crudEntity(10000);
-//        new EclipseLinkTestPerson().crudEntity(10000);
-//        new OpenJPATestPerson().crudEntity(10000);
-//        new MyBatisTestPerson().crudEntity(10000);
     }
+
+    public static void runTests(List<Integer> amountList, List<CrudEntitier> tests) {
+        for (int i = 0; i < amountList.size(); i++) {
+            runTestForDifferentORM(tests, amountList.get(i));
+        }
+    }
+
+    private static void runTestForDifferentORM(List<CrudEntitier> ormTest, int amount){
+        for (CrudEntitier orm: ormTest) {
+            System.out.println("\n***************************  " + orm.getClass().getSimpleName()+ "  ***************************");
+            orm.crudEntity(amount);
+        }
+    }
+
+    public static List<List<CrudEntitier>> initializeTest(){
+        List<List<CrudEntitier>> allTests = new ArrayList<>();
+
+        allTests.add(generateTestPerson());
+//        allTests.add(generateTestPersonIndexed());
+//        allTests.add(generateTestPersonOneToMany());
+//        allTests.add(generateTestJPQL());
+//        allTests.add(generateTestPersonInheritance());
+//        allTests.add(generateTestPersonCollection());
+
+        return allTests;
+    }
+
+    private static List<CrudEntitier> generateTestPerson(){
+        return Arrays.asList(new HibernateTestPerson(), new EclipseLinkTestPerson(),
+                new OpenJPATestPerson(), new MyBatisTestPerson());
+    }
+
+    private static List<CrudEntitier> generateTestPersonIndexed(){
+        return Arrays.asList(new HibernateTestPersonIndexed(), new EclipseLinkTestPersonIndexed(),
+                new OpenJPATestPersonIndexed(), new MyBatisTestPersonIndexed());
+    }
+
+    private static List<CrudEntitier> generateTestPersonOneToMany(){
+//        return Arrays.asList(new OpenJPATestPersonOneToMany());//Hibernate не работает
+        return Arrays.asList(new EclipseLinkTestPersonOneToMany(),
+                new OpenJPATestPersonOneToMany(), new MyBatisTestPersonOneToMany());
+    }
+
+    private static List<CrudEntitier> generateTestJPQL(){
+        return Arrays.asList(new HibernateTestPersonHQL(), new EclipseLinkTestPersonJPQL(),
+                new OpenJPATestPersonJPQL());
+    }
+
+    private static List<CrudEntitier> generateTestPersonInheritance(){
+        return Arrays.asList(new HibernateTestPersonExt(), new EclipseLinkTestPersonExt(),
+                new OpenJPATestPersonExt());
+    }
+
+    private static List<CrudEntitier> generateTestPersonCollection(){
+        return Arrays.asList(new HibernateTestPersonCollection(), new EclipseLinkTestPersonCollection(),
+                new OpenJPATestPersonCollection());
+    }
+
 }
 

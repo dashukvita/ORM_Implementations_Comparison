@@ -575,8 +575,8 @@ org.postgresql.util.PSQLException: ERROR: relation "extseq" does not exist
 	at org.hibernate.internal.SessionImpl.fireSave(SessionImpl.java:626)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:619)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:614)
-	at ru.jpa.Tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
-	at ru.jpa.Tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
+	at ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
+	at ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
 	at Main.main(Main.java:12)
 20:11:05,748  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 42P01
 20:11:05,749 ERROR SqlExceptionHelper:142 - ERROR: relation "extseq" does not exist
@@ -612,8 +612,8 @@ org.postgresql.util.PSQLException: ERROR: column tbl.next_val does not exist
 	at org.hibernate.internal.SessionImpl.fireSave(SessionImpl.java:626)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:619)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:614)
-	at ru.jpa.Tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
-	at ru.jpa.Tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
+	at ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
+	at ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
 	at Main.main(Main.java:12)
 20:19:53,143  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 42703
 20:19:53,143 ERROR SqlExceptionHelper:142 - ERROR: column tbl.next_val does not exist
@@ -649,8 +649,8 @@ org.postgresql.util.PSQLException: ERROR: column tbl.next_val does not exist
 	at org.hibernate.internal.SessionImpl.fireSave(SessionImpl.java:626)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:619)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:614)
-	at ru.jpa.Tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
-	at ru.jpa.Tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
+	at ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
+	at ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
 	at Main.main(Main.java:12)
 20:23:13,841  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 42703
 20:23:13,842 ERROR SqlExceptionHelper:142 - ERROR: column tbl.next_val does not exist
@@ -686,8 +686,8 @@ org.postgresql.util.PSQLException: ERROR: relation "extseq" does not exist
 	at org.hibernate.internal.SessionImpl.fireSave(SessionImpl.java:626)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:619)
 	at org.hibernate.internal.SessionImpl.save(SessionImpl.java:614)
-	at ru.jpa.Tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
-	at ru.jpa.Tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
+	at ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoHibernate.save(PersonExtDaoHibernate.java:15)
+	at ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt.createPerson(HibernateTestPersonExt.java:18)
 	at Main.main(Main.java:12)
 20:25:01,509  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 42P01
 20:25:01,510 ERROR SqlExceptionHelper:142 - ERROR: relation "extseq" does not exist
@@ -713,7 +713,7 @@ org.postgresql.util.PSQLException: ERROR: relation "extseq" does not exist
 22:21:22,427 ERROR SqlExceptionHelper:142 - ERROR: relation "hibernate_sequence" does not exist
   Позиция: 17
 14:13:55,110  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
-14:13:55,854  WARN AnnotationBinder:922 - HHH000457: Joined inheritance hierarchy [ru.jpa.Tests.TestInheritancePerson.model.PersonBase] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+14:13:55,854  WARN AnnotationBinder:922 - HHH000457: Joined inheritance hierarchy [ru.jpa.tests.TestInheritancePerson.model.PersonBase] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
 14:13:57,189  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 42P01
 14:13:57,190 ERROR SqlExceptionHelper:142 - ERROR: relation "hibernate_sequence" does not exist
   Позиция: 17
@@ -817,3 +817,47 @@ org.postgresql.util.PSQLException: ERROR: relation "extseq" does not exist
 15:58:59,354  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
 16:06:40,606  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
 16:07:49,847  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+18:57:48,648  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+18:59:00,027  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+18:59:39,449  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+19:00:29,435  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+19:01:03,906  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+19:07:57,806  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+19:56:11,635  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:51:04,164  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:52:38,665  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:53:03,441  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:55:25,972  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:58:06,472  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:58:33,925  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:59:25,770  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+20:59:54,461  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:00:15,571  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:01:10,607  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:01:56,481  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:04:11,516  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:05:25,376  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:05:54,447  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:06:22,020  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:06:24,063  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 42P01
+21:06:24,063 ERROR SqlExceptionHelper:142 - ERROR: relation "personotm" does not exist
+  Позиция: 403
+21:06:24,070  WARN SqlExceptionHelper:137 - SQL Error: 0, SQLState: 25P02
+21:06:24,071 ERROR SqlExceptionHelper:142 - The database returned ROLLBACK, so the transaction cannot be committed. Transaction failure cause is <<ERROR: relation "personotm" does not exist
+  Позиция: 403>>
+21:06:47,884  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:07:16,872  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:09:02,648  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+21:24:42,547  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:09:59,554  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:11:59,144  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:32:53,859  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:33:15,208  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:40:05,360  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:41:04,440  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:44:45,967  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:46:22,137  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+22:49:58,065  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+23:00:10,867  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+23:08:20,092  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+23:08:54,879  WARN pooling:72 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)

@@ -1,15 +1,15 @@
 package ru.jpa.utils;
 
-import ru.jpa.Tests.TestCollectionPerson.model.AddressCollection;
-import ru.jpa.Tests.TestCollectionPerson.model.PersonCollection;
-import ru.jpa.Tests.TestIndexedPerson.model.PersonIndexed;
-import ru.jpa.Tests.TestInheritancePerson.model.PersonBase;
-import ru.jpa.Tests.TestInheritancePerson.model.PersonExt;
-import ru.jpa.Tests.TestInheritancePerson.model.PersonExtExt;
-import ru.jpa.Tests.TestJPQLPerson.model.SimplePerson;
-import ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany;
-import ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany;
-import ru.jpa.Tests.TestPerson.model.Person;
+import ru.jpa.tests.TestCollectionPerson.model.AddressCollection;
+import ru.jpa.tests.TestCollectionPerson.model.PersonCollection;
+import ru.jpa.tests.TestIndexedPerson.model.PersonIndexed;
+import ru.jpa.tests.TestInheritancePerson.model.PersonBase;
+import ru.jpa.tests.TestInheritancePerson.model.PersonExt;
+import ru.jpa.tests.TestInheritancePerson.model.PersonExtExt;
+import ru.jpa.tests.TestJPQLPerson.model.SimplePerson;
+import ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany;
+import ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany;
+import ru.jpa.tests.TestPerson.model.Person;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

@@ -10,12 +10,12 @@
         <result property="zip" column="zip"/>
         <result property="country" column="country"/>
 
-        <association column="person_id" javaType="ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany"
+        <association column="person_id" javaType="ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany"
                      select="PersonOneToManyMapper.queryById"
                      property="person_id"/>
     </resultMap>
 
-    <select id="queryListByPersonId" resultType="ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany">
+    <select id="queryListByPersonId" resultType="ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany">
         select * from addressOtM where person_id = #{person_id}
     </select>
 
@@ -23,4 +23,7 @@
         INSERT into addressOtM(person_id, street, city, zip, country)
         VALUES(#{person_id},#{street},#{city},#{zip},#{country});
     </insert>
+    <delete id="deleteAddressById" parameterType="addressOtM">
+        delete from addressOtM where person_id = #{person_id}
+    </delete>
 </mapper>

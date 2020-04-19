@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="PersonIndexedMapper" >
+<mapper namespace="ru.mapper.mybatis.PersonIndexedMapper" >
     <resultMap id="personResult" type="personIndexed">
         <id property="id" column="id" />
         <result property="firstName" column="firstName"/>
@@ -19,17 +19,17 @@
         <result property="lastLoginDate" column="lastLoginDate"/>
         <result property="loginCount" column="loginCount"/>
     </resultMap>
-    <insert id="insertPerson" parameterType="person"  keyProperty="id" useGeneratedKeys="true">
+    <insert id="insertPerson" parameterType="personIndexed"  keyProperty="id" useGeneratedKeys="true">
         INSERT into personIndexed(firstName, middleName, lastName, street, city, zip, country, phone, email, birthDate, joinDate, lastLoginDate, loginCount)
         VALUES(#{firstName}, #{middleName}, #{lastName}, #{street}, #{city}, #{zip}, #{country}, #{phone}, #{email}, #{birthDate}, #{joinDate}, #{lastLoginDate}, #{loginCount});
     </insert>
-    <update id="updatePerson" parameterType="person">
+    <update id="updatePerson" parameterType="personIndexed">
         UPDATE personIndexed SET firstName=#{firstName};
     </update>
-    <delete id="deletePerson" parameterType="person">
+    <delete id="deletePerson" parameterType="personIndexed">
         DELETE FROM personIndexed;
     </delete>
-    <select id="findLastPerson" parameterType="person" resultMap="personResult">
+    <select id="findLastPerson" parameterType="personIndexed" resultMap="personResult">
         SELECT * FROM personIndexed WHERE id=#{id};
     </select>
     <select id="findAllPersons" statementType="PREPARED" resultMap="personResult">

@@ -6,12 +6,15 @@
 <configuration>
     <settings>
         <setting name="logImpl" value="SLF4J" />
+<!--        <setting name="aggressiveLazyLoading" value="false"/>-->
+<!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+<!--        <setting name="lazyLoadTriggerMethods" value="clone"/>-->
     </settings>
     <typeAliases>
-        <typeAlias type="ru.jpa.Tests.TestPerson.model.Person" alias="person"/>
-        <typeAlias type="ru.jpa.Tests.TestIndexedPerson.model.PersonIndexed" alias="personIndexed"/>
-        <typeAlias type="ru.jpa.Tests.TestOneToManyPerson.model.PersonOneToMany" alias="personOtM"/>
-        <typeAlias type="ru.jpa.Tests.TestOneToManyPerson.model.AddressOneToMany" alias="addressOtM"/>
+        <typeAlias type="ru.jpa.tests.TestPerson.model.Person" alias="person"/>
+        <typeAlias type="ru.jpa.tests.TestIndexedPerson.model.PersonIndexed" alias="personIndexed"/>
+        <typeAlias type="ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany" alias="personOtM"/>
+        <typeAlias type="ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany" alias="addressOtM"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
