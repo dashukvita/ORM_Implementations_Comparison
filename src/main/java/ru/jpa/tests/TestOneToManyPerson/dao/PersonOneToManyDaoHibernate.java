@@ -12,20 +12,23 @@ public class PersonOneToManyDaoHibernate {
     private AddressOneToMany address;
     private List<PersonOneToMany> persons;
 
-    public void save(PersonOneToMany person) {
+    public void save(int num) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
 
-        AddressOneToMany homeAddress = new AddressOneToMany();
-        AddressOneToMany workAddress = new AddressOneToMany();
-        person.getAddresses().add(homeAddress);
-        person.getAddresses().add(workAddress);
-        session.save(person);
+        for (int i = 0; i < num; i++) {
+            PersonOneToMany person = new PersonOneToMany();
+            AddressOneToMany homeAddress = new AddressOneToMany();
+            AddressOneToMany workAddress = new AddressOneToMany();
+            person.getAddresses().add(homeAddress);
+            person.getAddresses().add(workAddress);
+            session.save(person);
 
-        homeAddress.setPerson(person);
-        workAddress.setPerson(person);
-        session.save(homeAddress);
-        session.save(workAddress);
+            homeAddress.setPerson(person);
+            workAddress.setPerson(person);
+            session.save(homeAddress);
+            session.save(workAddress);
+        }
 
         tx1.commit();
         session.close();

@@ -9,18 +9,12 @@ import java.util.List;
 
 public class PersonExtDaoHibernate {
 
-    public void save(PersonExtExt person) {
+    public void save(int num) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(person);
-        tx1.commit();
-        session.close();
-    }
-
-    public void update(PersonExtExt person) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.update(person);
+        for (int i = 0; i < num; i++) {
+            session.save(new PersonExtExt());
+        }
         tx1.commit();
         session.close();
     }

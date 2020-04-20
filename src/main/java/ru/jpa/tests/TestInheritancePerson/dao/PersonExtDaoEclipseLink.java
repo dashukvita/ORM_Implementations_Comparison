@@ -1,6 +1,7 @@
 package ru.jpa.tests.TestInheritancePerson.dao;
 
 import ru.jpa.tests.TestInheritancePerson.model.PersonExtExt;
+import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.utils.EclipseLinkUtil;
 
 import javax.persistence.EntityManager;
@@ -9,18 +10,12 @@ import java.util.List;
 
 public class PersonExtDaoEclipseLink {
 
-    public void save(PersonExtExt person) {
+    public void save(int num) {
         EntityManager entityMgr = EclipseLinkUtil.getEntityManager();
         entityMgr.getTransaction().begin();
-        entityMgr.persist(person);
-        entityMgr.getTransaction().commit();
-        entityMgr.close();
-    }
-
-    public void update(PersonExtExt person) {
-        EntityManager entityMgr = EclipseLinkUtil.getEntityManager();
-        entityMgr.getTransaction().begin();
-        entityMgr.merge(person);
+        for (int i = 0; i < num; i++) {
+            entityMgr.persist(new PersonExtExt());
+        }
         entityMgr.getTransaction().commit();
         entityMgr.close();
     }
@@ -32,11 +27,6 @@ public class PersonExtDaoEclipseLink {
         entityMgr.remove(findPerson);
         entityMgr.getTransaction().commit();
         entityMgr.close();
-    }
-
-    public PersonExtExt getLastPerson(int id) {
-        EntityManager em = EclipseLinkUtil.getEntityManager();
-        return em.find(PersonExtExt.class, id);
     }
 
     public List<PersonExtExt> getAllPersons() {

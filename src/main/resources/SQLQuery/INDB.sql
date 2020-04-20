@@ -16,24 +16,6 @@ create table person
     loginCount integer
 );
 
-create table personExtExt
-(
-    id SERIAL PRIMARY KEY NOT NULL,
-    firstName CHARACTER VARYING(20) NOT NULL,
-    middleName CHARACTER VARYING(20),
-    lastName CHARACTER VARYING(20) NOT NULL,
-    street CHARACTER VARYING(20),
-    city CHARACTER VARYING(15),
-    zip CHARACTER VARYING(15),
-    country CHARACTER VARYING(15),
-    phone CHARACTER VARYING(15),
-    email CHARACTER VARYING(20) NOT NULL,
-    birthDate TIMESTAMP NOT NULL,
-    joinDate TIMESTAMP,
-    lastLoginDate TIMESTAMP,
-    loginCount integer
-);
-
 create table personCol
 (
     person_id SERIAL PRIMARY KEY NOT NULL,

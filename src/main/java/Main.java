@@ -12,6 +12,7 @@ import ru.jpa.tests.TestJPQLPerson.test.EclipseLinkTestPersonJPQL;
 import ru.jpa.tests.TestJPQLPerson.test.HibernateTestPersonHQL;
 import ru.jpa.tests.TestJPQLPerson.test.OpenJPATestPersonJPQL;
 import ru.jpa.tests.TestOneToManyPerson.test.EclipseLinkTestPersonOneToMany;
+import ru.jpa.tests.TestOneToManyPerson.test.HibernateTestPersonOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.test.MyBatisTestPersonOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.test.OpenJPATestPersonOneToMany;
 import ru.jpa.tests.TestPerson.test.EclipseLinkTestPerson;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> testAmounts = Arrays.asList(10);
+        List<Integer> testAmounts = Arrays.asList(5,10);
         List<List<CrudEntitier>> allORMTest = initializeTest();
 
         for (List<CrudEntitier> ormTest: allORMTest) {
@@ -51,9 +52,9 @@ public class Main {
     public static List<List<CrudEntitier>> initializeTest(){
         List<List<CrudEntitier>> allTests = new ArrayList<>();
 
-        allTests.add(generateTestPerson());
+//        allTests.add(generateTestPerson());
 //        allTests.add(generateTestPersonIndexed());
-//        allTests.add(generateTestPersonOneToMany());
+        allTests.add(generateTestPersonOneToMany());
 //        allTests.add(generateTestJPQL());
 //        allTests.add(generateTestPersonInheritance());
 //        allTests.add(generateTestPersonCollection());
@@ -72,7 +73,6 @@ public class Main {
     }
 
     private static List<CrudEntitier> generateTestPersonOneToMany(){
-//        return Arrays.asList(new OpenJPATestPersonOneToMany());//Hibernate не работает
         return Arrays.asList(new EclipseLinkTestPersonOneToMany(),
                 new OpenJPATestPersonOneToMany(), new MyBatisTestPersonOneToMany());
     }

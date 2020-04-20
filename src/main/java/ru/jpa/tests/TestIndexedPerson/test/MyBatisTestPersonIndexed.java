@@ -7,20 +7,18 @@ import ru.jpa.tests.imp.ITeastPersonAndPersonIndexed;
 import java.util.List;
 
 public class MyBatisTestPersonIndexed implements ITeastPersonAndPersonIndexed {
-    private List<PersonIndexed> persons;
     private PersonIndexedDaoMyBatis dao;
 
     @Override
     public void createPerson(int num) {
-        PersonIndexed person = new PersonIndexed();
         dao= new PersonIndexedDaoMyBatis();
-        dao.save(person);
+        dao.save(num);
     }
 
     @Override
     public List<PersonIndexed> getAllPersons() {
         dao= new PersonIndexedDaoMyBatis();
-        persons = dao.getAllPersons();
+        List<PersonIndexed> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -34,6 +32,7 @@ public class MyBatisTestPersonIndexed implements ITeastPersonAndPersonIndexed {
     @Override
     public void deletePerson() {
         dao= new PersonIndexedDaoMyBatis();
-        dao.delete();
+        List<PersonIndexed> persons = dao.getAllPersons();
+        persons.forEach(person -> dao.delete(person));
     }
 }

@@ -7,21 +7,18 @@ import ru.jpa.tests.imp.ITeastPersonAndPersonIndexed;
 import java.util.List;
 
 public class OpenJPATestPersonIndexed implements ITeastPersonAndPersonIndexed {
-    private List<PersonIndexed> persons;
     private PersonIndexedDaoOpenJpa dao;
-    private PersonIndexed person;
 
     @Override
     public void createPerson(int num) {
-        person = new PersonIndexed();
         dao = new PersonIndexedDaoOpenJpa();
-        dao.save(person);
+        dao.save(num);
     }
 
     @Override
     public List<PersonIndexed> getAllPersons() {
         dao = new PersonIndexedDaoOpenJpa();
-        persons = dao.getAllPersons();
+        List<PersonIndexed> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -29,9 +26,7 @@ public class OpenJPATestPersonIndexed implements ITeastPersonAndPersonIndexed {
     @Override
     public void updatePerson() {
         dao = new PersonIndexedDaoOpenJpa();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonIndexed> persons = dao.getAllPersons();
         for (PersonIndexed person : persons) {
             person.setFirstName("testName");
             dao.update(person);
@@ -41,9 +36,7 @@ public class OpenJPATestPersonIndexed implements ITeastPersonAndPersonIndexed {
     @Override
     public void deletePerson() {
         dao = new PersonIndexedDaoOpenJpa();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonIndexed> persons = dao.getAllPersons();
         persons.forEach(person -> dao.delete(person));
     }
 }

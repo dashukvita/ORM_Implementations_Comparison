@@ -8,10 +8,12 @@ import java.util.List;
 
 public class PersonCollectionDaoHibernate {
 
-    public void save(PersonCollection person) {
+    public void save(int num) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(person);
+        for (int i = 0; i < num; i++) {
+            session.save(new PersonCollection());
+        }
         tx1.commit();
         session.close();
     }
@@ -27,7 +29,6 @@ public class PersonCollectionDaoHibernate {
     public void delete(PersonCollection person) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-
         session.delete(person);
 
         tx1.commit();

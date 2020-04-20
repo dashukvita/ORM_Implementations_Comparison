@@ -26,12 +26,9 @@
     <update id="updatePerson" parameterType="personIndexed">
         UPDATE personIndexed SET firstName=#{firstName};
     </update>
-    <delete id="deletePerson" parameterType="personIndexed">
-        DELETE FROM personIndexed;
+    <delete id="deletePersonById" parameterType="personIndexed">
+        DELETE FROM personIndexed where id = #{id};
     </delete>
-    <select id="findLastPerson" parameterType="personIndexed" resultMap="personResult">
-        SELECT * FROM personIndexed WHERE id=#{id};
-    </select>
     <select id="findAllPersons" statementType="PREPARED" resultMap="personResult">
         SELECT * FROM personIndexed;
     </select>

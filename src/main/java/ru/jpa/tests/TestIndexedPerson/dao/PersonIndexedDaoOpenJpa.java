@@ -9,10 +9,12 @@ import java.util.List;
 
 public class PersonIndexedDaoOpenJpa {
 
-    public void save(PersonIndexed person) {
+    public void save(int num) {
         EntityManager entityMgr = OpenJPAUtil.getEntityManager();
         entityMgr.getTransaction().begin();
-        entityMgr.persist(person);
+        for (int i = 0; i < num; i++) {
+            entityMgr.persist(new PersonIndexed());
+        }
         entityMgr.getTransaction().commit();
         entityMgr.close();
     }

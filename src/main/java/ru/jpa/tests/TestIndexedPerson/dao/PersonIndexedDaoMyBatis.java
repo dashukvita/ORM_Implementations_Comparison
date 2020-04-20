@@ -2,13 +2,16 @@ package ru.jpa.tests.TestIndexedPerson.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import ru.jpa.tests.TestIndexedPerson.model.PersonIndexed;
+import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.utils.MyBatisUtil;
 import java.util.List;
 
 public class PersonIndexedDaoMyBatis {
-    public void save(PersonIndexed person) {
+    public void save(int num) {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        session.insert("ru.mapper.mybatis.PersonIndexedMapper.insertPerson", person);
+        for (int i = 0; i < num; i++) {
+            session.insert("ru.mapper.mybatis.PersonIndexedMapper.insertPerson", new PersonIndexed());
+        }
         session.commit();
         session.close();
     }
@@ -20,16 +23,17 @@ public class PersonIndexedDaoMyBatis {
         session.close();
     }
 
-    public void delete(){
+    public void delete(PersonIndexed person){
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        session.delete("ru.mapper.mybatis.PersonIndexedMapper.deletePerson");
+        session.selectList("ru.mapper.mybatis.PersonIndexedMapper.deletePersonById", person.getId());
+
         session.commit();
         session.close();
     }
 
     public List<PersonIndexed> getAllPersons() {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        List<PersonIndexed> personsList = session.selectList("PersonIndexedMapper.findAllPersons");
+        List<PersonIndexed> personsList = session.selectList("ru.mapper.mybatis.PersonIndexedMapper.findAllPersons");
         session.commit();
         session.close();
         return personsList;

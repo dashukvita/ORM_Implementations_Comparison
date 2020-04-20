@@ -7,20 +7,19 @@ import ru.jpa.tests.imp.ITestOneToManyAndCollection;
 import java.util.List;
 
 public class MyBatisTestPersonOneToMany implements ITestOneToManyAndCollection{
-    private List<PersonOneToMany> persons;
     PersonOneToManyDaoMyBatis dao;
 
     @Override
     public void createPerson(int num) {
         PersonOneToMany person = new PersonOneToMany();
         dao= new PersonOneToManyDaoMyBatis();
-        dao.save(person);
+        dao.save(num);
     }
 
     @Override
     public List<PersonOneToMany> getAllPersons() {
         dao= new PersonOneToManyDaoMyBatis();
-        persons = dao.getAllPersons();
+        List<PersonOneToMany> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -28,9 +27,7 @@ public class MyBatisTestPersonOneToMany implements ITestOneToManyAndCollection{
     @Override
     public void deletePerson() {
         dao= new PersonOneToManyDaoMyBatis();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonOneToMany> persons = dao.getAllPersons();
         persons.forEach(person -> dao.delete(person));
     }
 

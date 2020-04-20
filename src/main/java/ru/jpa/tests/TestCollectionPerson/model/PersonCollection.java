@@ -19,7 +19,7 @@ public class PersonCollection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int person_id;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -29,7 +29,7 @@ public class PersonCollection {
 //    @ElementCollection(fetch=FetchType.EAGER) doesn't work with OpenJPA
     @ElementCollection
 //    @JoinTable(name="addressCol",joinColumns=@JoinColumn(name="id")) doesn't work with EclipseLink
-    @CollectionTable(name="addressCol", joinColumns=@JoinColumn(name="id"))
+    @CollectionTable(name="addressCol", joinColumns=@JoinColumn(name="person_id"))
     private Collection<AddressCollection> addresses = new ArrayList<AddressCollection>();
 
     @Temporal(TemporalType.DATE)
@@ -67,7 +67,7 @@ public class PersonCollection {
     }
 
     public int getId() {
-        return id;
+        return person_id;
     }
 
     public String getFirstName() {

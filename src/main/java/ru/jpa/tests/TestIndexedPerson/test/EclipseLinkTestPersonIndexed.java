@@ -7,20 +7,18 @@ import ru.jpa.tests.imp.ITeastPersonAndPersonIndexed;
 import java.util.List;
 
 public class EclipseLinkTestPersonIndexed implements ITeastPersonAndPersonIndexed {
-    private List<PersonIndexed> persons;
     private PersonIndexedDaoEclipseLink dao;
 
     @Override
     public void createPerson(int num) {
-        PersonIndexed person = new PersonIndexed();
         dao = new PersonIndexedDaoEclipseLink();
-        dao.save(person);
+        dao.save(num);
     }
 
     @Override
     public List<PersonIndexed> getAllPersons() {
         dao = new PersonIndexedDaoEclipseLink();
-        persons = dao.getAllPersons();
+        List<PersonIndexed> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -28,9 +26,7 @@ public class EclipseLinkTestPersonIndexed implements ITeastPersonAndPersonIndexe
     @Override
     public void updatePerson() {
         dao = new PersonIndexedDaoEclipseLink();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonIndexed> persons = dao.getAllPersons();
         for (PersonIndexed person : persons) {
             person.setFirstName("testName");
             dao.update(person);
@@ -40,9 +36,7 @@ public class EclipseLinkTestPersonIndexed implements ITeastPersonAndPersonIndexe
     @Override
     public void deletePerson() {
         dao = new PersonIndexedDaoEclipseLink();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonIndexed> persons = dao.getAllPersons();
         persons.forEach(person -> dao.delete(person));
     }
 }

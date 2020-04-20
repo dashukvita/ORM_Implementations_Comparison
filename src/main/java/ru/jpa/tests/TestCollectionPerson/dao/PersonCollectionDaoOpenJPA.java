@@ -10,10 +10,12 @@ import java.util.List;
 public class PersonCollectionDaoOpenJPA {
     private EntityManager entityManager;
 
-    public void save(PersonCollection person) {
+    public void save(int num) {
         entityManager = OpenJPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(person);
+        for (int i = 0; i < num; i++) {
+            entityManager.persist(new PersonCollection());
+        }
         entityManager.getTransaction().commit();
         entityManager.close();
     }

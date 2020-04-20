@@ -19,4 +19,10 @@ public abstract class AbstractIdentifiableObject {
         this.id = id;
         return this;
     }
+
+    // Methods:
+    @Override
+    public String toString() {
+        return "fid = " + id;
+    }
 }

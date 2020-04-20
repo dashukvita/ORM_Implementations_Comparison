@@ -9,18 +9,12 @@ import java.util.List;
 
 public class PersonExtDaoOpenJPA {
 
-    public void save(PersonExtExt person) {
+    public void save(int num) {
         EntityManager entityMgr = OpenJPAUtil.getEntityManager();
         entityMgr.getTransaction().begin();
-        entityMgr.persist(person);
-        entityMgr.getTransaction().commit();
-        entityMgr.close();
-    }
-
-    public void update(PersonExtExt person) {
-        EntityManager entityMgr = OpenJPAUtil.getEntityManager();
-        entityMgr.getTransaction().begin();
-        entityMgr.merge(person);
+        for (int i = 0; i < num; i++) {
+            entityMgr.persist(new PersonExtExt());
+        }
         entityMgr.getTransaction().commit();
         entityMgr.close();
     }
@@ -32,11 +26,6 @@ public class PersonExtDaoOpenJPA {
         entityMgr.remove(findPerson);
         entityMgr.getTransaction().commit();
         entityMgr.close();
-    }
-
-    public PersonExtExt getLastPerson(int id) {
-        EntityManager em = OpenJPAUtil.getEntityManager();
-        return em.find(PersonExtExt.class, id);
     }
 
     public List<PersonExtExt> getAllPersons() {

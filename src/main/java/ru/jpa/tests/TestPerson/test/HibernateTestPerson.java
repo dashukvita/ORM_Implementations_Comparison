@@ -7,7 +7,6 @@ import ru.jpa.tests.TestPerson.model.Person;
 import java.util.List;
 
 public class HibernateTestPerson implements ITeastPersonAndPersonIndexed {
-    private List<Person> persons;
     private PersonDaoHibernate dao;
 
     @Override
@@ -19,7 +18,7 @@ public class HibernateTestPerson implements ITeastPersonAndPersonIndexed {
     @Override
     public List<Person> getAllPersons() {
         dao = new PersonDaoHibernate();
-        persons = dao.getAllPersons();
+        List<Person> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -27,9 +26,7 @@ public class HibernateTestPerson implements ITeastPersonAndPersonIndexed {
     @Override
     public void updatePerson() {
         dao = new PersonDaoHibernate();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<Person> persons = dao.getAllPersons();
         for (Person person : persons) {
             person.setFirstName("testName");
             dao.update(person);
@@ -39,9 +36,7 @@ public class HibernateTestPerson implements ITeastPersonAndPersonIndexed {
     @Override
     public void deletePerson() {
         dao = new PersonDaoHibernate();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<Person> persons = dao.getAllPersons();
         persons.forEach(person -> dao.delete(person));
     }
 }

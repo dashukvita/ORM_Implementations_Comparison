@@ -1,6 +1,7 @@
 package ru.jpa.tests.TestIndexedPerson.dao;
 
 import ru.jpa.tests.TestIndexedPerson.model.PersonIndexed;
+import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.utils.EclipseLinkUtil;
 
 import javax.persistence.EntityManager;
@@ -9,10 +10,12 @@ import java.util.List;
 
 public class PersonIndexedDaoEclipseLink {
 
-    public void save(PersonIndexed person) {
+    public void save(int num) {
         EntityManager entityManager = EclipseLinkUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(person);
+        for (int i = 0; i < num; i++) {
+            entityManager.persist(new PersonIndexed());
+        }
         entityManager.getTransaction().commit();
         entityManager.close();
     }

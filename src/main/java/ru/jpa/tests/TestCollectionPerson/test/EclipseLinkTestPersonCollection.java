@@ -7,22 +7,18 @@ import ru.jpa.tests.imp.ITestOneToManyAndCollection;
 import java.util.List;
 
 public class EclipseLinkTestPersonCollection implements ITestOneToManyAndCollection {
-    private List<PersonCollection> persons;
-    private List<PersonCollection> personsWithAddress;
     private PersonCollectionDaoEclipseLink dao;
 
     @Override
     public void createPerson(int num) {
-
-        PersonCollection person = new PersonCollection();
         dao = new PersonCollectionDaoEclipseLink();
-        dao.save(person);
+        dao.save(num);
     }
 
     @Override
     public List<PersonCollection> getAllPersons() {
         dao = new PersonCollectionDaoEclipseLink();
-        persons = dao.getAllPersons();
+        List<PersonCollection> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -30,18 +26,14 @@ public class EclipseLinkTestPersonCollection implements ITestOneToManyAndCollect
     @Override
     public void updatePerson() {
         dao = new PersonCollectionDaoEclipseLink();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonCollection> persons = dao.getAllPersons();
         persons.forEach(person -> dao.update(person));
     }
 
     @Override
     public void deletePerson() {
         dao = new PersonCollectionDaoEclipseLink();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonCollection> persons = dao.getAllPersons();
         persons.forEach(person -> dao.delete(person));
     }
 }

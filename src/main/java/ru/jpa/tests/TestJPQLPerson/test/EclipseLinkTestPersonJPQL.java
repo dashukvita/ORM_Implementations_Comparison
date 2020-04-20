@@ -1,6 +1,7 @@
 package ru.jpa.tests.TestJPQLPerson.test;
 
 import ru.jpa.tests.TestJPQLPerson.model.SimplePerson;
+import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.tests.imp.ITestJPQLPerson;
 import ru.jpa.utils.EclipseLinkUtil;
 
@@ -62,10 +63,11 @@ public class EclipseLinkTestPersonJPQL implements ITestJPQLPerson {
 
     @Override
     public void save(int num) {
-        SimplePerson person = new SimplePerson();
         EntityManager entityManager = EclipseLinkUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(person);
+        for (int i = 0; i < num; i++) {
+            entityManager.persist(new SimplePerson());
+        }
         entityManager.getTransaction().commit();
         entityManager.close();
     }

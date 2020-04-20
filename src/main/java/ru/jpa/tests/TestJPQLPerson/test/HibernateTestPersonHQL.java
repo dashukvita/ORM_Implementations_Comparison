@@ -3,6 +3,7 @@ package ru.jpa.tests.TestJPQLPerson.test;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import ru.jpa.tests.TestJPQLPerson.model.SimplePerson;
+import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.tests.imp.ITestJPQLPerson;
 import ru.jpa.utils.HibernateUtil;
 
@@ -63,10 +64,11 @@ public class HibernateTestPersonHQL implements ITestJPQLPerson {
 
     @Override
     public void save(int num) {
-        SimplePerson person = new SimplePerson();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        session.save(person);
+        for (int i = 0; i < num; i++) {
+            session.save(new SimplePerson());
+        }
         tx1.commit();
         session.close();
     }

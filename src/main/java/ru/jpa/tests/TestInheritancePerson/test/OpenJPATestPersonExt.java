@@ -7,20 +7,18 @@ import ru.jpa.tests.imp.ITestPersonInheritance;
 import java.util.List;
 
 public class OpenJPATestPersonExt implements ITestPersonInheritance {
-
-    private List<PersonExtExt> persons;
     private PersonExtDaoOpenJPA dao;
 
     @Override
     public void createPerson(int num) {
-        PersonExtExt person = new PersonExtExt();
         dao = new PersonExtDaoOpenJPA();
-        dao.save(person);
+        dao.save(num);
     }
 
+    @Override
     public List<PersonExtExt> getAllPersons() {
         dao = new PersonExtDaoOpenJPA();
-        persons = dao.getAllPersons();
+        List<PersonExtExt> persons = dao.getAllPersons();
         persons.forEach(person -> System.out.println(person));
         return persons;
     }
@@ -28,9 +26,7 @@ public class OpenJPATestPersonExt implements ITestPersonInheritance {
     @Override
     public void deletePerson() {
         dao = new PersonExtDaoOpenJPA();
-        if(persons == null || persons.isEmpty()){
-            getAllPersons();
-        }
+        List<PersonExtExt> persons = dao.getAllPersons();
         persons.forEach(person -> dao.delete(person));
     }
 }
