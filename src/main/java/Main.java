@@ -52,12 +52,12 @@ public class Main {
     public static List<List<CrudEntitier>> initializeTest(){
         List<List<CrudEntitier>> allTests = new ArrayList<>();
 
-//        allTests.add(generateTestPerson());
-//        allTests.add(generateTestPersonIndexed());
+        allTests.add(generateTestPerson());
+        allTests.add(generateTestPersonIndexed());
         allTests.add(generateTestPersonOneToMany());
-//        allTests.add(generateTestJPQL());
-//        allTests.add(generateTestPersonInheritance());
-//        allTests.add(generateTestPersonCollection());
+        allTests.add(generateTestJPQL());
+        allTests.add(generateTestPersonInheritance());
+        allTests.add(generateTestPersonCollection());
 
         return allTests;
     }
@@ -73,8 +73,8 @@ public class Main {
     }
 
     private static List<CrudEntitier> generateTestPersonOneToMany(){
-        return Arrays.asList(new EclipseLinkTestPersonOneToMany(),
-                new OpenJPATestPersonOneToMany(), new MyBatisTestPersonOneToMany());
+        return Arrays.asList(new HibernateTestPersonOneToMany(), new OpenJPATestPersonOneToMany(),
+                new EclipseLinkTestPersonOneToMany(), new MyBatisTestPersonOneToMany());
     }
 
     private static List<CrudEntitier> generateTestJPQL(){

@@ -14,8 +14,8 @@
         <mapping class="ru.jpa.tests.TestPerson.model.Person"/>
         <mapping class="ru.jpa.tests.TestCollectionPerson.model.PersonCollection"/>
         <mapping class="ru.jpa.tests.TestCollectionPerson.model.AddressCollection"/>
-        <mapping class="ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany"/>
-        <mapping class="ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany"/>
+        <mapping class="ru.jpa.tests.TestOneToManyPerson.model.PersonOneToManyHib"/>
+        <mapping class="ru.jpa.tests.TestOneToManyPerson.model.AddressOneToManyHib"/>
         <mapping class="ru.jpa.tests.TestInheritancePerson.model.PersonBase"/>
         <mapping class="ru.jpa.tests.TestInheritancePerson.model.PersonExt"/>
         <mapping class="ru.jpa.tests.TestInheritancePerson.model.PersonExtExt"/>

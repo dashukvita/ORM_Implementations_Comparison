@@ -30,6 +30,7 @@ public class PersonOneToManyDaoOpenJPA {
             entityManager.persist(homeAddress);
             entityManager.persist(workAddress);
         }
+
         entityManager.getTransaction().commit();
         entityManager.close();
     }

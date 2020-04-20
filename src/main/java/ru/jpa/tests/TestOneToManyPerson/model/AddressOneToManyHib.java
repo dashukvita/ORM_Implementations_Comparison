@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="addressOtM")
-public class AddressOneToMany {
+public class AddressOneToManyHib {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,20 +18,20 @@ public class AddressOneToMany {
 
     @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id",referencedColumnName = "person_id")
-    private PersonOneToMany person;
+    private PersonOneToManyHib person;
 
-    public AddressOneToMany(){
+    public AddressOneToManyHib(){
         street = Randomizer.randomStreet();
         city = Randomizer.randomCity();
         zip = Randomizer.randomZip();
         country = Randomizer.randomCountry();
     }
 
-    public PersonOneToMany getPerson() {
+    public PersonOneToManyHib getPerson() {
         return person;
     }
 
-    public AddressOneToMany setPerson(PersonOneToMany person) {
+    public AddressOneToManyHib setPerson(PersonOneToManyHib person) {
         this.person = person;
         return this;
     }

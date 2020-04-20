@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="personOtM")
-public class PersonOneToMany implements Serializable {
+public class PersonOneToManyHib implements Serializable {
 
     // Fields:
 
@@ -26,8 +26,8 @@ public class PersonOneToMany implements Serializable {
     private String email;
     private String phone;
 
-   @OneToMany(mappedBy = "person", targetEntity = AddressOneToMany.class)
-    private Collection<AddressOneToMany> addresses = new ArrayList<>();
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "person", targetEntity = AddressOneToManyHib.class)
+    private Collection<AddressOneToManyHib> addresses = new ArrayList<>();
 
     @Temporal(TemporalType.DATE)
     private Date birthDate;
@@ -41,7 +41,7 @@ public class PersonOneToMany implements Serializable {
 
     // Constructors:
 
-    public PersonOneToMany() {
+    public PersonOneToManyHib() {
         firstName = Randomizer.randomFirstName();
         middleName = Randomizer.randomMiddleName();
         lastName = Randomizer.randomLastName();
@@ -59,17 +59,17 @@ public class PersonOneToMany implements Serializable {
         return firstName;
     }
 
-    public PersonOneToMany setFirstName(String firstName) {
+    public PersonOneToManyHib setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public PersonOneToMany setAddresses(Collection<AddressOneToMany> addresses) {
+    public PersonOneToManyHib setAddresses(Collection<AddressOneToManyHib> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public Collection<AddressOneToMany> getAddresses() {
+    public Collection<AddressOneToManyHib> getAddresses() {
         return addresses;
     }
 
@@ -77,7 +77,7 @@ public class PersonOneToMany implements Serializable {
         return person_id;
     }
 
-    public PersonOneToMany setPerson_id(int person_id) {
+    public PersonOneToManyHib setPerson_id(int person_id) {
         this.person_id = person_id;
         return this;
     }

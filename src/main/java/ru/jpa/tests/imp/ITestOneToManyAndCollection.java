@@ -15,7 +15,7 @@ public interface ITestOneToManyAndCollection extends CrudEntitier {
         timeBenchmark.measure(() -> createPerson(num));
         System.out.println("------------------Find Entities");
         timeBenchmark.measure(this::getAllPersons);
-        System.out.println("------------------Find Entities with Address");
+        System.out.println("------------------Update Address");
         timeBenchmark.measure(this::updatePerson);
         System.out.println("------------------Delete Entities");
         timeBenchmark.measure(this::deletePerson);

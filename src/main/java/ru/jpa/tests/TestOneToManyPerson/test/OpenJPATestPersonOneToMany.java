@@ -11,6 +11,7 @@ public class OpenJPATestPersonOneToMany implements ITestOneToManyAndCollection {
 
     @Override
     public void createPerson(int num) {
+        PersonOneToMany person = new PersonOneToMany();
         dao = new PersonOneToManyDaoOpenJPA();
         dao.save(num);
     }
