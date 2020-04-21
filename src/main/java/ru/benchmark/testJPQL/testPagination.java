@@ -45,9 +45,9 @@ public class testPagination {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void deleteMethod() {
+    public void paginationMethod() {
         new EclipseLinkTestPersonJPQL().JPQLWithPagination();
-        new HibernateTestPersonHQL().JPQLWithPagination();
-        new OpenJPATestPersonJPQL().JPQLWithPagination();
+//        new HibernateTestPersonHQL().JPQLWithPagination();
+//        new OpenJPATestPersonJPQL().JPQLWithPagination();
     }
 }

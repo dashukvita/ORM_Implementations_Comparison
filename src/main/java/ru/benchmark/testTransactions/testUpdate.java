@@ -15,6 +15,7 @@ import ru.jpa.tests.TestOneToManyPerson.test.EclipseLinkTestPersonOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.test.HibernateTestPersonOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.test.MyBatisTestPersonOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.test.OpenJPATestPersonOneToMany;
+import ru.jpa.tests.TestPerson.dao.PersonDaoEclipseLink;
 import ru.jpa.tests.TestPerson.test.EclipseLinkTestPerson;
 import ru.jpa.tests.TestPerson.test.HibernateTestPerson;
 import ru.jpa.tests.TestPerson.test.MyBatisTestPerson;
@@ -38,8 +39,8 @@ public class testUpdate {
     }
 
     public void createEntityForTest(){
-//        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
-//        dao.save(num);
+        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
+        dao.save(num);
 //
 //        PersonOneToManyDaoEclipseLink daoOtM = new PersonOneToManyDaoEclipseLink();
 //        daoOtM.save(num);
@@ -60,24 +61,24 @@ public class testUpdate {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void deleteMethod() {
+    public void updateMethod() {
         new EclipseLinkTestPerson().updatePerson();
-        new HibernateTestPerson().updatePerson();
-        new MyBatisTestPerson().updatePerson();
-        new OpenJPATestPerson().updatePerson();
-
-        new EclipseLinkTestPersonOneToMany().updatePerson();
-        new HibernateTestPersonOneToMany().updatePerson();
-        new MyBatisTestPersonOneToMany().updatePerson();
-        new OpenJPATestPersonOneToMany().updatePerson();
-
-        new EclipseLinkTestPersonIndexed().updatePerson();
-        new HibernateTestPersonIndexed().updatePerson();
-        new HibernateTestPersonIndexed().updatePerson();
-        new OpenJPATestPersonIndexed().updatePerson();
-
-        new EclipseLinkTestPersonCollection().updatePerson();
-        new HibernateTestPersonCollection().updatePerson();
-        new OpenJPATestPersonCollection().updatePerson();
+//        new HibernateTestPerson().updatePerson();
+//        new MyBatisTestPerson().updatePerson();
+//        new OpenJPATestPerson().updatePerson();
+//
+//        new EclipseLinkTestPersonOneToMany().updatePerson();
+//        new HibernateTestPersonOneToMany().updatePerson();
+//        new MyBatisTestPersonOneToMany().updatePerson();
+//        new OpenJPATestPersonOneToMany().updatePerson();
+//
+//        new EclipseLinkTestPersonIndexed().updatePerson();
+//        new HibernateTestPersonIndexed().updatePerson();
+//        new HibernateTestPersonIndexed().updatePerson();
+//        new OpenJPATestPersonIndexed().updatePerson();
+//
+//        new EclipseLinkTestPersonCollection().updatePerson();
+//        new HibernateTestPersonCollection().updatePerson();
+//        new OpenJPATestPersonCollection().updatePerson();
     }
 }

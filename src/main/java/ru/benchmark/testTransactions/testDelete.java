@@ -5,6 +5,8 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
+import ru.jpa.tests.TestPerson.dao.PersonDaoEclipseLink;
+import ru.jpa.tests.TestPerson.test.EclipseLinkTestPerson;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,8 +26,8 @@ public class testDelete {
     }
 
     public void createEntityForTest(){
-//        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
-//        dao.save(num);
+        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
+        dao.save(num);
 //
 //        PersonOneToManyDaoEclipseLink daoOtM = new PersonOneToManyDaoEclipseLink();
 //        daoOtM.save(num);
@@ -47,7 +49,7 @@ public class testDelete {
     @Measurement(iterations = 1)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void deleteMethod() {
-//        new EclipseLinkTestPerson().deletePerson();
+        new EclipseLinkTestPerson().deletePerson();
 //        new HibernateTestPerson().deletePerson();
 //        new MyBatisTestPerson().deletePerson();
 //        new OpenJPATestPerson().deletePerson();

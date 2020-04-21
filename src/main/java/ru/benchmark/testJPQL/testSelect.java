@@ -46,8 +46,8 @@ public class testSelect {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void deleteMethod() {
-//        new EclipseLinkTestPersonJPQL().JPQLSelect();
+    public void selectMethod() {
+        new EclipseLinkTestPersonJPQL().JPQLSelect();
 //        new HibernateTestPersonHQL().JPQLSelect();
 //        new OpenJPATestPersonJPQL().JPQLDelete();
     }

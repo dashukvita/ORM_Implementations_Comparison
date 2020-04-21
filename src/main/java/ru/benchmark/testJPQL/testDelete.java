@@ -42,12 +42,12 @@ public class testDelete {
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void deleteMethod() {
         new EclipseLinkTestPersonJPQL().JPQLDelete();
-        new HibernateTestPersonHQL().JPQLDelete();
-        new OpenJPATestPersonJPQL().JPQLDelete();
+//        new HibernateTestPersonHQL().JPQLDelete();
+//        new OpenJPATestPersonJPQL().JPQLDelete();
     }
 }

@@ -46,9 +46,9 @@ public class testUpdate {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void deleteMethod() {
+    public void updateMethod() {
         new EclipseLinkTestPersonJPQL().JPQLUpdate();
-        new HibernateTestPersonHQL().JPQLUpdate();
-        new OpenJPATestPersonJPQL().JPQLUpdate();
+//        new HibernateTestPersonHQL().JPQLUpdate();
+//        new OpenJPATestPersonJPQL().JPQLUpdate();
     }
 }
