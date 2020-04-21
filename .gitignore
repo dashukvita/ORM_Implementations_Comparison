@@ -5,3 +5,6 @@
 /target/
 /jpa_part.iml
 .DS_Store
+/eclipselink.log
+/hibernate.log
+/openjpa.log

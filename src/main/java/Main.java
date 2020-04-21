@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> testAmounts = Arrays.asList(5,10);
+        List<Integer> testAmounts = Arrays.asList(10000);
         List<List<CrudEntitier>> allORMTest = initializeTest();
 
         for (List<CrudEntitier> ormTest: allORMTest) {
