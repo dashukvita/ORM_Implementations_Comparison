@@ -22,7 +22,7 @@ public class testPaginationJPQL {
         System.err.close();
         System.setErr(System.out);
         testPaginationJPQL test = new testPaginationJPQL();
-//        test.createEntityForTest();
+        test.createEntityForTest();
 
         Options opt = new OptionsBuilder()
                 .include(testPaginationJPQL.class.getSimpleName())

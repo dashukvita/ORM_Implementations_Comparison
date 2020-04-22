@@ -35,8 +35,8 @@ public class testUpdateTr {
         System.err.close();
         System.setErr(System.out);
         testUpdateTr test = new testUpdateTr();
-//        test.createEntityForTest();
-//
+        test.createEntityForTest();
+
         Options opt = new OptionsBuilder()
                 .include(testUpdateTr.class.getSimpleName())
                 .forks(1)

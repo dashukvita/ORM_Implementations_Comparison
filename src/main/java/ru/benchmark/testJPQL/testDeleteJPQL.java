@@ -27,7 +27,7 @@ public class testDeleteJPQL {
                 .include(testDeleteJPQL.class.getSimpleName())
                 .forks(1)
                 .build();
-//        test.createEntityForTest();
+        test.createEntityForTest();
         new Runner(opt).run();
     }
 

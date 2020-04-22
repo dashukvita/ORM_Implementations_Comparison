@@ -23,7 +23,7 @@ public class testUpdateJPQL {
         System.err.close();
         System.setErr(System.out);
         testUpdateJPQL test = new testUpdateJPQL();
-//        test.createEntityForTest();
+        test.createEntityForTest();
 
         Options opt = new OptionsBuilder()
                 .include(testUpdateJPQL.class.getSimpleName())

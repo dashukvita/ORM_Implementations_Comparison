@@ -39,28 +39,28 @@ public class testDeleteTr {
         System.err.close();
         System.setErr(System.out);
         testDeleteTr test = new testDeleteTr();
+        test.createEntityForTest();
 
         Options opt = new OptionsBuilder()
                 .include(testDeleteTr.class.getSimpleName())
                 .forks(1)
                 .build();
-        test.createEntityForTest();
         new Runner(opt).run();
     }
 
     public void createEntityForTest(){
-//        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
-//        dao.save(num);
+        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
+        dao.save(num);
 
-//        PersonOneToManyDaoEclipseLink daoOtM = new PersonOneToManyDaoEclipseLink();
-//        daoOtM.save(num);
-//
-//        PersonExtDaoEclipseLink daoExt = new PersonExtDaoEclipseLink();
-//        daoExt.save(num);
-////
-//        PersonIndexedDaoEclipseLink daoInd = new PersonIndexedDaoEclipseLink();
-//        daoInd.save(num);
-//
+        PersonOneToManyDaoEclipseLink daoOtM = new PersonOneToManyDaoEclipseLink();
+        daoOtM.save(num);
+
+        PersonExtDaoEclipseLink daoExt = new PersonExtDaoEclipseLink();
+        daoExt.save(num);
+
+        PersonIndexedDaoEclipseLink daoInd = new PersonIndexedDaoEclipseLink();
+        daoInd.save(num);
+
         PersonCollectionDaoEclipseLink daoCol = new PersonCollectionDaoEclipseLink();
         daoCol.save(num);
     }
@@ -71,28 +71,167 @@ public class testDeleteTr {
     @Warmup(iterations = 1)
     @Measurement(iterations = 1)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void deleteMethod() {
-//        new EclipseLinkTestPerson().deletePerson();
-//        new HibernateTestPerson().deletePerson();
-//        new MyBatisTestPerson().deletePerson();
-//        new OpenJPATestPerson().deletePerson();
+    public void deleteEclipseLinkTestPerson() {
+        new EclipseLinkTestPerson().deletePerson();
+    }
 
-//        new EclipseLinkTestPersonOneToMany().deletePerson();
-//        new HibernateTestPersonOneToMany().deletePerson();
-//        new MyBatisTestPersonOneToMany().deletePerson();
-//        new OpenJPATestPersonOneToMany().deletePerson();
-//
-//        new EclipseLinkTestPersonIndexed().deletePerson();
-//        new HibernateTestPersonIndexed().deletePerson();
-//        new MyBatisTestPersonIndexed().deletePerson();
-//        new OpenJPATestPersonIndexed().deletePerson();
-//
-//        new EclipseLinkTestPersonExt().deletePerson();
-//        new HibernateTestPersonExt().deletePerson();
-//        new OpenJPATestPersonExt().deletePerson();
-//
-//        new EclipseLinkTestPersonCollection().deletePerson();
-//        new HibernateTestPersonCollection().deletePerson();
-//        new OpenJPATestPersonCollection().deletePerson();
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteHibernateTestPerson() {
+        new HibernateTestPerson().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteMyBatisTestPerson() {
+        new MyBatisTestPerson().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteOpenJPATestPerson() {
+        new OpenJPATestPerson().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteEclipseLinkTestPersonOneToMany() {
+        new EclipseLinkTestPersonOneToMany().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteHibernateTestPersonOneToMany() {
+        new HibernateTestPersonOneToMany().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteMyBatisTestPersonOneToMany() {
+        new MyBatisTestPersonOneToMany().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteOpenJPATestPersonOneToMany() {
+        new OpenJPATestPersonOneToMany().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteEclipseLinkTestPersonIndexed() {
+        new EclipseLinkTestPersonIndexed().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteMyBatisTestPersonIndexed() {
+        new MyBatisTestPersonIndexed().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteOpenJPATestPersonIndexed() {
+        new OpenJPATestPersonIndexed().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteEclipseLinkTestPersonExt() {
+        new EclipseLinkTestPersonExt().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteHibernateTestPersonExt() {
+        new HibernateTestPersonExt().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteOpenJPATestPersonExt() {
+        new OpenJPATestPersonExt().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteEclipseLinkTestPersonCollection() {
+        new EclipseLinkTestPersonCollection().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteHibernateTestPersonCollection() {
+        new HibernateTestPersonCollection().deletePerson();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteOpenJPATestPersonCollection() {
+        new OpenJPATestPersonCollection().deletePerson();
     }
 }

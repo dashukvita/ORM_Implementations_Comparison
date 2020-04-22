@@ -22,7 +22,7 @@ public class testSelectJPQL {
         System.err.close();
         System.setErr(System.out);
         testSelectJPQL test = new testSelectJPQL();
-//        test.createEntityForTest();
+        test.createEntityForTest();
 
         Options opt = new OptionsBuilder()
                 .include(testSelectJPQL.class.getSimpleName())
