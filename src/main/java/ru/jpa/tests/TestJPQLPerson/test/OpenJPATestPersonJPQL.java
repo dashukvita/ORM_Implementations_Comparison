@@ -39,7 +39,7 @@ public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
         Query query = entityManager.createQuery( "select sp.firstName from SimplePerson sp" );
         query.getResultList();
         List<String> list = (List<String>) query.getResultList();
-        list.forEach(personName -> System.out.println(personName));
+//        list.forEach(personName -> System.out.println(personName));
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -55,7 +55,7 @@ public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
         query.setFirstResult( 1 );
         query.setMaxResults( 9 );
         List<String> list = (List<String>) query.getResultList();
-        list.forEach(personName -> System.out.println(personName));
+//        list.forEach(personName -> System.out.println(personName));
 
         entityManager.getTransaction().commit();
         entityManager.close();

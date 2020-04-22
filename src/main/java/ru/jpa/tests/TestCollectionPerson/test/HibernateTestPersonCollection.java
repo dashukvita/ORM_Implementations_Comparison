@@ -19,7 +19,7 @@ public class HibernateTestPersonCollection implements ITestOneToManyAndCollectio
     public List<PersonCollection> getAllPersons() {
         dao = new PersonCollectionDaoHibernate();
         List<PersonCollection> persons= dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

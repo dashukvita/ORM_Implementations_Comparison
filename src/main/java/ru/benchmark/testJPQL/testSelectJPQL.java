@@ -15,17 +15,19 @@ import javax.persistence.EntityManager;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
-public class testPagination {
+public class testSelectJPQL {
     public int num = 1000;
 
     public static void main(String[] args) throws RunnerException {
-        testPagination test = new testPagination();
+        System.err.close();
+        System.setErr(System.out);
+        testSelectJPQL test = new testSelectJPQL();
+//        test.createEntityForTest();
 
         Options opt = new OptionsBuilder()
-                .include(testSelect.class.getSimpleName())
+                .include(testSelectJPQL.class.getSimpleName())
                 .forks(1)
                 .build();
-        test.createEntityForTest();
         new Runner(opt).run();
     }
 
@@ -45,9 +47,27 @@ public class testPagination {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void paginationMethod() {
-        new EclipseLinkTestPersonJPQL().JPQLWithPagination();
-//        new HibernateTestPersonHQL().JPQLWithPagination();
-//        new OpenJPATestPersonJPQL().JPQLWithPagination();
+    public void selectEclipseLink() {
+        new EclipseLinkTestPersonJPQL().JPQLSelect();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 3)
+    @Measurement(iterations = 2)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void selectHibernate() {
+        new HibernateTestPersonHQL().JPQLSelect();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void selectOpenJPA() {
+        new OpenJPATestPersonJPQL().JPQLSelect();
     }
 }

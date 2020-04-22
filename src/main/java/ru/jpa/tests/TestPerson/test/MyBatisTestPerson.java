@@ -21,7 +21,7 @@ public class MyBatisTestPerson implements ITeastPersonAndPersonIndexed {
     public List<Person> getAllPersons() {
         dao= new PersonDaoMyBatis();
         List<Person> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

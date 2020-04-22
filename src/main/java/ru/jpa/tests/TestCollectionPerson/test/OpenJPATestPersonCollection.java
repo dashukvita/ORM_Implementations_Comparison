@@ -19,7 +19,7 @@ public class OpenJPATestPersonCollection implements ITestOneToManyAndCollection 
     public List<PersonCollection> getAllPersons() {
         dao = new PersonCollectionDaoOpenJPA();
         List<PersonCollection> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

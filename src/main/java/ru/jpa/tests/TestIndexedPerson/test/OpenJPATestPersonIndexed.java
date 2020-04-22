@@ -19,7 +19,7 @@ public class OpenJPATestPersonIndexed implements ITeastPersonAndPersonIndexed {
     public List<PersonIndexed> getAllPersons() {
         dao = new PersonIndexedDaoOpenJpa();
         List<PersonIndexed> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

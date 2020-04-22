@@ -12,12 +12,8 @@ import ru.jpa.tests.TestCollectionPerson.test.OpenJPATestPersonCollection;
 import ru.jpa.tests.TestIndexedPerson.dao.PersonIndexedDaoEclipseLink;
 import ru.jpa.tests.TestIndexedPerson.test.EclipseLinkTestPersonIndexed;
 import ru.jpa.tests.TestIndexedPerson.test.HibernateTestPersonIndexed;
-import ru.jpa.tests.TestIndexedPerson.test.MyBatisTestPersonIndexed;
 import ru.jpa.tests.TestIndexedPerson.test.OpenJPATestPersonIndexed;
 import ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoEclipseLink;
-import ru.jpa.tests.TestInheritancePerson.test.EclipseLinkTestPersonExt;
-import ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt;
-import ru.jpa.tests.TestInheritancePerson.test.OpenJPATestPersonExt;
 import ru.jpa.tests.TestOneToManyPerson.dao.PersonOneToManyDaoEclipseLink;
 import ru.jpa.tests.TestOneToManyPerson.test.EclipseLinkTestPersonOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.test.HibernateTestPersonOneToMany;
@@ -32,17 +28,17 @@ import ru.jpa.tests.TestPerson.test.OpenJPATestPerson;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
-public class testGet {
+public class testUpdateTr {
     public int num = 1000;
 
     public static void main(String[] args) throws RunnerException {
         System.err.close();
         System.setErr(System.out);
-        testGet test = new testGet();
-        test.createEntityForTest();
-
+        testUpdateTr test = new testUpdateTr();
+//        test.createEntityForTest();
+//
         Options opt = new OptionsBuilder()
-                .include(testGet.class.getSimpleName())
+                .include(testUpdateTr.class.getSimpleName())
                 .forks(1)
                 .build();
         new Runner(opt).run();
@@ -71,177 +67,137 @@ public class testGet {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonEclipseMethod() {
-        new EclipseLinkTestPerson().getAllPersons();
+    public void updateEclipseLinkTestPerson() {
+        new EclipseLinkTestPerson().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonHibernateMethod() {
-        new HibernateTestPerson().getAllPersons();
+    public void updateHibernateTestPerson() {
+        new HibernateTestPerson().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonOpenJPAMethod() {
-        new OpenJPATestPerson().getAllPersons();
+    public void updateMyBatisTestPerson() {
+        new MyBatisTestPerson().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonMyBatisMethod() {
-        new MyBatisTestPerson().getAllPersons();
+    public void updateOpenJPATestPerson() {
+        new OpenJPATestPerson().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonOtmEclipseMethod() {
-        new EclipseLinkTestPersonOneToMany().getAllPersons();
+    public void updateEclipseLinkTestPersonOneToMan() {
+        new EclipseLinkTestPersonOneToMany().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonOtmHibernateMethod() {
-        new HibernateTestPersonOneToMany().getAllPersons();
+    public void updateHibernateTestPersonOneToMany() {
+        new HibernateTestPersonOneToMany().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonOtmOpenJPAMethod() {
-        new OpenJPATestPersonOneToMany().getAllPersons();
+    public void updateMyBatisTestPersonOneToMan() {
+        new MyBatisTestPersonOneToMany().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonOtmMyBatisMethod() {
-        new MyBatisTestPersonOneToMany().getAllPersons();
+    public void updateOpenJPATestPersonOneToMany() {
+        new OpenJPATestPersonOneToMany().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonIndexedEclipseMethod() {
-        new EclipseLinkTestPersonIndexed().getAllPersons();
+    public void updateEclipseLinkTestPersonIndexed() {
+        new EclipseLinkTestPersonIndexed().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonIndexedHibernateMethod() {
-        new HibernateTestPersonIndexed().getAllPersons();
+    public void updateHibernateTestPersonIndexed() {
+        new HibernateTestPersonIndexed().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonIndexedOpenJPAMethod() {
-        new OpenJPATestPersonIndexed().getAllPersons();
+    public void updateOpenJPATestPersonIndexed() {
+        new OpenJPATestPersonIndexed().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonIndexedMyBatisMethod() {
-        new MyBatisTestPersonIndexed().getAllPersons();
+    public void updateEclipseLinkTestPersonCollection() {
+        new EclipseLinkTestPersonCollection().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonExtEclipseMethod() {
-        new EclipseLinkTestPersonExt().getAllPersons();
+    public void updateHibernateTestPersonCollection() {
+        new HibernateTestPersonCollection().updatePerson();
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonExtHibernateMethod() {
-        new HibernateTestPersonExt().getAllPersons();
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonExtOpenJPAMethod() {
-        new OpenJPATestPersonExt().getAllPersons();
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonColEclipseMethod() {
-        new EclipseLinkTestPersonCollection().getAllPersons();
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonColHibernateMethod() {
-        new HibernateTestPersonCollection().getAllPersons();
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonColOpenJPAMethod() {
-        new OpenJPATestPersonCollection().getAllPersons();
+    public void updateOpenJPATestPersonCollection() {
+        new OpenJPATestPersonCollection().updatePerson();
     }
 }

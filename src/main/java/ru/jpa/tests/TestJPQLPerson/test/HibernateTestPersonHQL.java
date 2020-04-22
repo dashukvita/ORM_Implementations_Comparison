@@ -40,7 +40,7 @@ public class HibernateTestPersonHQL implements ITestJPQLPerson {
         Query query = session.createQuery( "select firstName from SimplePerson" );
         query.getResultList();
         List<String> list = (List<String>) query.getResultList();
-        list.forEach(personName -> System.out.println(personName));
+//        list.forEach(personName -> System.out.println(personName));
 
         tx1.commit();
         session.close();
@@ -56,7 +56,7 @@ public class HibernateTestPersonHQL implements ITestJPQLPerson {
         query.setFirstResult( 1 );
         query.setMaxResults( 9 );
         List<String> list = (List<String>) query.getResultList();
-        list.forEach(personName -> System.out.println(personName));
+//        list.forEach(personName -> System.out.println(personName));
 
         tx1.commit();
         session.close();

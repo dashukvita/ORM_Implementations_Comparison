@@ -15,18 +15,19 @@ import javax.persistence.EntityManager;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
-public class testUpdate {
-
+public class testDeleteJPQL {
     public int num = 1000;
 
     public static void main(String[] args) throws RunnerException {
-        testUpdate test = new testUpdate();
+        System.err.close();
+        System.setErr(System.out);
+        testDeleteJPQL test = new testDeleteJPQL();
 
         Options opt = new OptionsBuilder()
-                .include(testUpdate.class.getSimpleName())
+                .include(testDeleteJPQL.class.getSimpleName())
                 .forks(1)
                 .build();
-        test.createEntityForTest();
+//        test.createEntityForTest();
         new Runner(opt).run();
     }
 
@@ -43,12 +44,30 @@ public class testUpdate {
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
     @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void updateMethod() {
-        new EclipseLinkTestPersonJPQL().JPQLUpdate();
-//        new HibernateTestPersonHQL().JPQLUpdate();
-//        new OpenJPATestPersonJPQL().JPQLUpdate();
+    public void deleteEclipseLink() {
+        new EclipseLinkTestPersonJPQL().JPQLDelete();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteHibernate() {
+        new HibernateTestPersonHQL().JPQLDelete();
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void deleteOpenJPA() {
+        new OpenJPATestPersonJPQL().JPQLDelete();
     }
 }

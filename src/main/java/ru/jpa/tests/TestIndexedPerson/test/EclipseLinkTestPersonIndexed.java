@@ -19,7 +19,7 @@ public class EclipseLinkTestPersonIndexed implements ITeastPersonAndPersonIndexe
     public List<PersonIndexed> getAllPersons() {
         dao = new PersonIndexedDaoEclipseLink();
         List<PersonIndexed> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

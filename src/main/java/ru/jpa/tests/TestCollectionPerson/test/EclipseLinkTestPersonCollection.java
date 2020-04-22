@@ -19,7 +19,7 @@ public class EclipseLinkTestPersonCollection implements ITestOneToManyAndCollect
     public List<PersonCollection> getAllPersons() {
         dao = new PersonCollectionDaoEclipseLink();
         List<PersonCollection> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

@@ -14,10 +14,10 @@ public interface ITeastPersonAndPersonIndexed extends CrudEntitier {
         System.out.println("------------------Create Entities");
         timeBenchmark.measure(() -> createPerson(num));
         System.out.println("------------------Get All Entities");
-//        timeBenchmark.measure(this::getAllPersons);
+        timeBenchmark.measure(this::getAllPersons);
         System.out.println("------------------Update Entities");
-//        timeBenchmark.measure(this::updatePerson);
+        timeBenchmark.measure(this::updatePerson);
         System.out.println("------------------Delete Entities");
-//        timeBenchmark.measure(this::deletePerson);
+        timeBenchmark.measure(this::deletePerson);
     }
 }

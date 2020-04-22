@@ -19,7 +19,7 @@ public class EclipseLinkTestPersonExt implements ITestPersonInheritance {
     public List<PersonExtExt> getAllPersons() {
         dao = new PersonExtDaoEclipseLink();
         List<PersonExtExt> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

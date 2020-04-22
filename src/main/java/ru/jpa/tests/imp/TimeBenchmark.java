@@ -20,14 +20,15 @@ public class TimeBenchmark {
 
     private void waitTime(){
         try {
-            Thread.sleep(60000);
+//            Thread.sleep(60000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     private void printResult(){
-        System.out.println("Nanoseconds:" + nanos);
+//        System.out.println("Nanoseconds:" + nanos);
         System.out.println("Milliseconds:" + millis);
     }
 

@@ -18,7 +18,7 @@ public class HibernateTestPersonIndexed implements ITeastPersonAndPersonIndexed 
     public List<PersonIndexed> getAllPersons() {
         dao = new PersonIndexedDaoHibernate();
         List<PersonIndexed> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 

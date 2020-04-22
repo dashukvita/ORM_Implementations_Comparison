@@ -20,7 +20,7 @@ public class MyBatisTestPersonOneToMany implements ITestOneToManyAndCollection{
     public List<PersonOneToMany> getAllPersons() {
         dao= new PersonOneToManyDaoMyBatis();
         List<PersonOneToMany> persons = dao.getAllPersons();
-        persons.forEach(person -> System.out.println(person));
+//        persons.forEach(person -> System.out.println(person));
         return persons;
     }
 
