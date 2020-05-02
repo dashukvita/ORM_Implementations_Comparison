@@ -36,12 +36,12 @@ public class Main {
     public static List<List<CrudEntitier>> initializeTest(){
         List<List<CrudEntitier>> allTests = new ArrayList<>();
 
-//        allTests.add(generateTestPerson());
-//        allTests.add(generateTestPersonIndexed());
-//        allTests.add(generateTestPersonOneToMany());
+        allTests.add(generateTestPerson());
+        allTests.add(generateTestPersonIndexed());
+        allTests.add(generateTestPersonOneToMany());
         allTests.add(generateTestJPQL());
-//        allTests.add(generateTestPersonInheritance());
-//        allTests.add(generateTestPersonCollection());
+        allTests.add(generateTestPersonInheritance());
+        allTests.add(generateTestPersonCollection());
 
         return allTests;
     }
