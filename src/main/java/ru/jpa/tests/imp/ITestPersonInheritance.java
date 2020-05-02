@@ -1,7 +1,5 @@
 package ru.jpa.tests.imp;
 
-import ru.jpa.tests.TestInheritancePerson.model.PersonExtExt;
-
 import java.util.List;
 
 public interface ITestPersonInheritance extends CrudEntitier {

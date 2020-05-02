@@ -1,17 +1,14 @@
 package ru.jpa.tests.TestCollectionPerson.dao;
 
 import ru.jpa.tests.TestCollectionPerson.model.PersonCollection;
-import ru.jpa.utils.OpenJPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-public class PersonCollectionDaoOpenJPA {
-    private EntityManager entityManager;
+public class PersonCollectionDaoJPA {
 
-    public void save(int num) {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public void save(int num, EntityManager entityManager) {
         entityManager.getTransaction().begin();
         for (int i = 0; i < num; i++) {
             entityManager.persist(new PersonCollection());
@@ -20,8 +17,7 @@ public class PersonCollectionDaoOpenJPA {
         entityManager.close();
     }
 
-    public void update(PersonCollection person) {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public void update(PersonCollection person, EntityManager entityManager) {
         entityManager.getTransaction().begin();
         PersonCollection findPerson = entityManager.find(PersonCollection.class, person.getId());
         findPerson.setFirstName("testName");
@@ -30,8 +26,7 @@ public class PersonCollectionDaoOpenJPA {
         entityManager.close();
     }
 
-    public void delete(PersonCollection person) {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public void delete(PersonCollection person, EntityManager entityManager) {
         entityManager.getTransaction().begin();
         PersonCollection findPerson = entityManager.find(PersonCollection.class, person.getId());
         entityManager.remove(findPerson);
@@ -39,11 +34,8 @@ public class PersonCollectionDaoOpenJPA {
         entityManager.close();
     }
 
-    public List<PersonCollection> getAllPersons() {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public List<PersonCollection> getAllPersons(EntityManager entityManager) {
         Query q = entityManager.createQuery("SELECT p from PersonCollection p");
-        List<PersonCollection> persons = (List<PersonCollection>)q.getResultList();
-        entityManager.close();
-        return persons;
+        return (List<PersonCollection>)q.getResultList();
     }
 }

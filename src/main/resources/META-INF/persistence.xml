@@ -2,7 +2,35 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
              version="1.0">
 
-    <persistence-unit name="jpa-openjpa" transaction-type="RESOURCE_LOCAL">
+
+    <persistence-unit name="hibernate" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>ru.jpa.tests.TestPerson.model.Person</class>
+        <class>ru.jpa.tests.TestCollectionPerson.model.PersonCollection</class>
+        <class>ru.jpa.tests.TestCollectionPerson.model.AddressCollection</class>
+        <class>ru.jpa.tests.TestIndexedPerson.model.PersonIndexed</class>
+        <class>ru.jpa.tests.TestInheritancePerson.model.AbstractIdentifiableObject</class>
+        <class>ru.jpa.tests.TestInheritancePerson.model.PersonBase</class>
+        <class>ru.jpa.tests.TestInheritancePerson.model.PersonExt</class>
+        <class>ru.jpa.tests.TestInheritancePerson.model.PersonExtExt</class>
+        <class>ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany</class>
+        <class>ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany</class>
+        <class>ru.jpa.tests.TestJPQLPerson.model.SimplePerson</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+            <!--        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>-->
+            <!--        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>-->
+            <!--        <property name="hibernate.connection.username">postgres</property>-->
+            <!--        <property name="hibernate.connection.password">12345</property>-->
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mysql" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="12345" />
+            <property name="show_sql" value="false" />
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="openjpa" transaction-type="RESOURCE_LOCAL">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <class>ru.jpa.tests.TestPerson.model.Person</class>
         <class>ru.jpa.tests.TestCollectionPerson.model.PersonCollection</class>
@@ -26,7 +54,7 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="jpa_eclipselink" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="eclipselink" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>ru.jpa.tests.TestPerson.model.Person</class>
         <class>ru.jpa.tests.TestCollectionPerson.model.PersonCollection</class>

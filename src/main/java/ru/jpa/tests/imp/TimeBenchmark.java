@@ -1,7 +1,6 @@
 package ru.jpa.tests.imp;
 
 import java.math.BigDecimal;
-import java.util.concurrent.TimeUnit;
 
 public class TimeBenchmark {
     private BigDecimal timeStart;

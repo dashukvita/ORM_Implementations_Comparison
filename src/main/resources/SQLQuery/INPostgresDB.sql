@@ -1,13 +1,13 @@
--- drop table person;
--- drop table personCol;
--- drop table addressCol;
--- drop table addressOtM;
--- drop table personOtM;
--- drop table personBase;
--- drop table personExt;
--- drop table personExtExt;
--- drop table simplePerson;
--- drop table personIndexed;
+ drop table person;
+ drop table personCol;
+ drop table addressCol;
+ drop table addressOtM;
+ drop table personOtM;
+ drop table personBase;
+ drop table personExt;
+ drop table personExtExt;
+ drop table simplePerson;
+ drop table personIndexed;
 
 create table person
 (
@@ -21,9 +21,9 @@ create table person
     country CHARACTER VARYING(15),
     phone CHARACTER VARYING(15),
     email CHARACTER VARYING(20) NOT NULL,
-    birthDate  DATETIME NOT NULL,
-    joinDate DATETIME,
-    lastLoginDate DATETIME,
+    birthDate TIMESTAMP NOT NULL,
+    joinDate TIMESTAMP,
+    lastLoginDate TIMESTAMP,
     loginCount INTEGER
 );
 
@@ -35,9 +35,9 @@ create table personCol
     lastName CHARACTER VARYING(20) NOT NULL,
     phone CHARACTER VARYING(50),
     email CHARACTER VARYING(20) NOT NULL,
-    birthDate DATETIME NOT NULL,
-    joinDate DATETIME,
-    lastLoginDate DATETIME,
+    birthDate TIMESTAMP NOT NULL,
+    joinDate TIMESTAMP,
+    lastLoginDate TIMESTAMP,
     loginCount INTEGER
 );
 
@@ -58,9 +58,9 @@ create table personOtM
     lastName CHARACTER VARYING(20) NOT NULL,
     phone CHARACTER VARYING(50),
     email CHARACTER VARYING(20) NOT NULL,
-    birthDate DATETIME NOT NULL,
-    joinDate DATETIME,
-    lastLoginDate DATETIME,
+    birthDate TIMESTAMP NOT NULL,
+    joinDate TIMESTAMP,
+    lastLoginDate TIMESTAMP,
     loginCount INTEGER
 );
 
@@ -95,9 +95,9 @@ create table personExt(
 create table personExtExt
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    birthDate DATETIME NOT NULL,
-    joinDate DATETIME,
-    lastLoginDate DATETIME,
+    birthDate TIMESTAMP NOT NULL,
+    joinDate TIMESTAMP,
+    lastLoginDate TIMESTAMP,
     loginCount INTEGER
 );
 
@@ -115,9 +115,9 @@ create table simplePerson
     country CHARACTER VARYING(15),
     phone CHARACTER VARYING(15),
     email CHARACTER VARYING(20) NOT NULL,
-    birthDate DATETIME NOT NULL,
-    joinDate DATETIME,
-    lastLoginDate DATETIME,
+    birthDate TIMESTAMP NOT NULL,
+    joinDate TIMESTAMP,
+    lastLoginDate TIMESTAMP,
     loginCount INTEGER
 );
 
@@ -133,8 +133,10 @@ create table personIndexed
     country CHARACTER VARYING(15),
     phone CHARACTER VARYING(15),
     email CHARACTER VARYING(20) NOT NULL,
-    birthDate DATETIME NOT NULL,
-    joinDate DATETIME,
-    lastLoginDate DATETIME,
+    birthDate TIMESTAMP NOT NULL,
+    joinDate TIMESTAMP,
+    lastLoginDate TIMESTAMP,
     loginCount INTEGER
 );
+
+

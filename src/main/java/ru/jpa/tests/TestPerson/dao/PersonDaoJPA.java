@@ -1,16 +1,14 @@
 package ru.jpa.tests.TestPerson.dao;
 
 import ru.jpa.tests.TestPerson.model.Person;
-import ru.jpa.utils.EclipseLinkUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-public class PersonDaoEclipseLink {
+public class PersonDaoJPA {
 
-    public void save(int num) {
-        EntityManager entityManager = EclipseLinkUtil.getEntityManager();
+    public void save(int num, EntityManager entityManager) {
         entityManager.getTransaction().begin();
         for (int i = 0; i < num; i++) {
             entityManager.persist(new Person());
@@ -19,16 +17,15 @@ public class PersonDaoEclipseLink {
         entityManager.close();
     }
 
-    public void update(Person person) {
-        EntityManager entityManager = EclipseLinkUtil.getEntityManager();
+    public void update(Person person, EntityManager entityManager) {
         entityManager.getTransaction().begin();
         entityManager.merge(person);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
 
-    public void delete(Person person) {
-        EntityManager entityManager = EclipseLinkUtil.getEntityManager();
+    public void delete(Person person, EntityManager entityManager) {
+
         entityManager.getTransaction().begin();
         Person findPerson = entityManager.find(Person.class, person.getId());
         entityManager.remove(findPerson);
@@ -36,8 +33,7 @@ public class PersonDaoEclipseLink {
         entityManager.close();
     }
 
-    public List<Person> getAllPersons() {
-        EntityManager entityManager = EclipseLinkUtil.getEntityManager();
+    public List<Person> getAllPersons(EntityManager entityManager) {
         Query q = entityManager.createQuery("SELECT p from Person p");
         return (List<Person>)q.getResultList();
     }

@@ -2,14 +2,14 @@ package ru.jpa.tests.TestPerson.test;
 
 import ru.jpa.tests.TestOneToManyPerson.dao.PersonOneToManyDaoMyBatis;
 import ru.jpa.tests.TestPerson.dao.PersonDaoMyBatis;
-import ru.jpa.tests.TestPerson.dao.PersonDaoOpenJpa;
 import ru.jpa.tests.imp.ITeastPersonAndPersonIndexed;
 import ru.jpa.tests.TestPerson.model.Person;
 
 import java.util.List;
 
-public class MyBatisTestPerson implements ITeastPersonAndPersonIndexed {
+public class TestPersonMyBatis implements ITeastPersonAndPersonIndexed {
     private PersonDaoMyBatis dao;
+    public String entityManagerName = "mybatis";
 
     @Override
     public void createPerson(int num) {

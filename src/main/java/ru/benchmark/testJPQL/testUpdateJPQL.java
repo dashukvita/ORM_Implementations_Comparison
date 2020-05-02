@@ -6,18 +6,18 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import ru.jpa.tests.TestJPQLPerson.model.SimplePerson;
-import ru.jpa.tests.TestJPQLPerson.test.EclipseLinkTestPersonJPQL;
-import ru.jpa.tests.TestJPQLPerson.test.HibernateTestPersonHQL;
-import ru.jpa.tests.TestJPQLPerson.test.OpenJPATestPersonJPQL;
-import ru.jpa.utils.EclipseLinkUtil;
+import ru.jpa.tests.TestJPQLPerson.test.TestPersonJPQL;
+import ru.jpa.utils.UtilJPA;
 
 import javax.persistence.EntityManager;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
 public class testUpdateJPQL {
-
     public int num = 1000;
+    private final String HIBERNATE = "hibernate";
+    private final String ECLIPSELINK = "eclipselink";
+    private final String OPENJPA = "openjpa";
 
     public static void main(String[] args) throws RunnerException {
         System.err.close();
@@ -33,7 +33,7 @@ public class testUpdateJPQL {
     }
 
     public void createEntityForTest(){
-        EntityManager entityManager = EclipseLinkUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(HIBERNATE);
         entityManager.getTransaction().begin();
         for (int i = 0; i < num; i++) {
             entityManager.persist(new SimplePerson());
@@ -49,7 +49,7 @@ public class testUpdateJPQL {
     @Measurement(iterations = 2)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void updateEclipseLink() {
-        new EclipseLinkTestPersonJPQL().JPQLUpdate();
+        new TestPersonJPQL(ECLIPSELINK).JPQLUpdate();
     }
 
     @Benchmark
@@ -59,7 +59,7 @@ public class testUpdateJPQL {
     @Measurement(iterations = 2)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void updateHibernate() {
-        new HibernateTestPersonHQL().JPQLUpdate();
+        new TestPersonJPQL(HIBERNATE).JPQLUpdate();
     }
 
     @Benchmark
@@ -69,6 +69,6 @@ public class testUpdateJPQL {
     @Measurement(iterations = 2)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void updateOpenJPA() {
-        new OpenJPATestPersonJPQL().JPQLUpdate();
+        new TestPersonJPQL(OPENJPA).JPQLUpdate();
     }
 }

@@ -5,41 +5,28 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-import ru.jpa.tests.TestCollectionPerson.dao.PersonCollectionDaoEclipseLink;
-import ru.jpa.tests.TestCollectionPerson.test.EclipseLinkTestPersonCollection;
-import ru.jpa.tests.TestCollectionPerson.test.HibernateTestPersonCollection;
-import ru.jpa.tests.TestCollectionPerson.test.OpenJPATestPersonCollection;
-import ru.jpa.tests.TestIndexedPerson.dao.PersonIndexedDaoEclipseLink;
-import ru.jpa.tests.TestIndexedPerson.test.EclipseLinkTestPersonIndexed;
-import ru.jpa.tests.TestIndexedPerson.test.HibernateTestPersonIndexed;
-import ru.jpa.tests.TestIndexedPerson.test.MyBatisTestPersonIndexed;
-import ru.jpa.tests.TestIndexedPerson.test.OpenJPATestPersonIndexed;
-import ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoEclipseLink;
-import ru.jpa.tests.TestInheritancePerson.test.EclipseLinkTestPersonExt;
-import ru.jpa.tests.TestInheritancePerson.test.HibernateTestPersonExt;
-import ru.jpa.tests.TestInheritancePerson.test.OpenJPATestPersonExt;
-import ru.jpa.tests.TestOneToManyPerson.dao.PersonOneToManyDaoEclipseLink;
-import ru.jpa.tests.TestOneToManyPerson.test.EclipseLinkTestPersonOneToMany;
-import ru.jpa.tests.TestOneToManyPerson.test.HibernateTestPersonOneToMany;
-import ru.jpa.tests.TestOneToManyPerson.test.MyBatisTestPersonOneToMany;
-import ru.jpa.tests.TestOneToManyPerson.test.OpenJPATestPersonOneToMany;
-import ru.jpa.tests.TestPerson.dao.PersonDaoEclipseLink;
-import ru.jpa.tests.TestPerson.test.EclipseLinkTestPerson;
-import ru.jpa.tests.TestPerson.test.HibernateTestPerson;
-import ru.jpa.tests.TestPerson.test.MyBatisTestPerson;
-import ru.jpa.tests.TestPerson.test.OpenJPATestPerson;
-
+import ru.jpa.tests.TestCollectionPerson.test.TestPersonCollectionJPA;
+import ru.jpa.tests.TestIndexedPerson.test.TestPersonIndexedJPA;
+import ru.jpa.tests.TestIndexedPerson.test.TestPersonIndexedMyBatis;
+import ru.jpa.tests.TestInheritancePerson.test.TestPersonExtJPA;
+import ru.jpa.tests.TestOneToManyPerson.test.TestPersonOneToManyJPA;
+import ru.jpa.tests.TestOneToManyPerson.test.TestPersonOneToManyMyBatis;
+import ru.jpa.tests.TestPerson.test.TestPersonJPA;
+import ru.jpa.tests.TestPerson.test.TestPersonMyBatis;
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
 public class testGet {
-    public int num = 1000;
+    public static int num = 1000;
+    private final String HIBERNATE = "hibernate";
+    private final String ECLIPSELINK = "eclipselink";
+    private final String OPENJPA = "openjpa";
 
     public static void main(String[] args) throws RunnerException {
         System.err.close();
         System.setErr(System.out);
-        testGet test = new testGet();
-        test.createEntityForTest();
+        EntityForTest entityForTest = new EntityForTest();
+        entityForTest.createEntityForTest(num);
 
         Options opt = new OptionsBuilder()
                 .include(testGet.class.getSimpleName())
@@ -48,22 +35,13 @@ public class testGet {
         new Runner(opt).run();
     }
 
-    public void createEntityForTest(){
-        PersonDaoEclipseLink dao = new PersonDaoEclipseLink();
-        dao.save(num);
-
-        PersonOneToManyDaoEclipseLink daoOtM = new PersonOneToManyDaoEclipseLink();
-        daoOtM.save(num);
-
-        PersonExtDaoEclipseLink daoExt = new PersonExtDaoEclipseLink();
-        daoExt.save(num);
-
-        PersonIndexedDaoEclipseLink daoInd = new PersonIndexedDaoEclipseLink();
-        daoInd.save(num);
-
-        PersonCollectionDaoEclipseLink daoCol = new PersonCollectionDaoEclipseLink();
-        daoCol.save(num);
-    }
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Fork(value = 1)
+    @Warmup(iterations = 5)
+    @Measurement(iterations = 10)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    public void getTestPersonEclipseMethod() { new TestPersonJPA(ECLIPSELINK).getAllPersons(); }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
@@ -71,9 +49,7 @@ public class testGet {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonEclipseMethod() {
-        new EclipseLinkTestPerson().getAllPersons();
-    }
+    public void getTestPersonHibernateMethod() { new TestPersonJPA(HIBERNATE).getAllPersons(); }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
@@ -81,19 +57,7 @@ public class testGet {
     @Warmup(iterations = 5)
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonHibernateMethod() {
-        new HibernateTestPerson().getAllPersons();
-    }
-
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @Fork(value = 1)
-    @Warmup(iterations = 5)
-    @Measurement(iterations = 10)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void getTestPersonOpenJPAMethod() {
-        new OpenJPATestPerson().getAllPersons();
-    }
+    public void getTestPersonOpenJPAMethod() { new TestPersonJPA(OPENJPA).getAllPersons(); }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
@@ -102,7 +66,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonMyBatisMethod() {
-        new MyBatisTestPerson().getAllPersons();
+        new TestPersonMyBatis().getAllPersons();
     }
 
     @Benchmark
@@ -112,7 +76,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonOtmEclipseMethod() {
-        new EclipseLinkTestPersonOneToMany().getAllPersons();
+        new TestPersonOneToManyJPA(ECLIPSELINK).getAllPersons();
     }
 
     @Benchmark
@@ -122,7 +86,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonOtmHibernateMethod() {
-        new HibernateTestPersonOneToMany().getAllPersons();
+        new TestPersonOneToManyJPA(HIBERNATE).getAllPersons();
     }
 
     @Benchmark
@@ -132,7 +96,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonOtmOpenJPAMethod() {
-        new OpenJPATestPersonOneToMany().getAllPersons();
+        new TestPersonOneToManyJPA(OPENJPA).getAllPersons();
     }
 
     @Benchmark
@@ -142,7 +106,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonOtmMyBatisMethod() {
-        new MyBatisTestPersonOneToMany().getAllPersons();
+        new TestPersonOneToManyMyBatis().getAllPersons();
     }
 
     @Benchmark
@@ -152,7 +116,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonIndexedEclipseMethod() {
-        new EclipseLinkTestPersonIndexed().getAllPersons();
+        new TestPersonIndexedJPA(ECLIPSELINK).getAllPersons();
     }
 
     @Benchmark
@@ -162,7 +126,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonIndexedHibernateMethod() {
-        new HibernateTestPersonIndexed().getAllPersons();
+        new TestPersonIndexedJPA(HIBERNATE).getAllPersons();
     }
 
     @Benchmark
@@ -172,7 +136,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonIndexedOpenJPAMethod() {
-        new OpenJPATestPersonIndexed().getAllPersons();
+        new TestPersonIndexedJPA(OPENJPA).getAllPersons();
     }
 
     @Benchmark
@@ -182,7 +146,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonIndexedMyBatisMethod() {
-        new MyBatisTestPersonIndexed().getAllPersons();
+        new TestPersonIndexedMyBatis().getAllPersons();
     }
 
     @Benchmark
@@ -192,7 +156,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonExtEclipseMethod() {
-        new EclipseLinkTestPersonExt().getAllPersons();
+        new TestPersonExtJPA(ECLIPSELINK).getAllPersons();
     }
 
     @Benchmark
@@ -202,7 +166,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonExtHibernateMethod() {
-        new HibernateTestPersonExt().getAllPersons();
+        new TestPersonExtJPA(HIBERNATE).getAllPersons();
     }
 
     @Benchmark
@@ -212,7 +176,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonExtOpenJPAMethod() {
-        new OpenJPATestPersonExt().getAllPersons();
+        new TestPersonExtJPA(OPENJPA).getAllPersons();
     }
 
     @Benchmark
@@ -222,7 +186,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonColEclipseMethod() {
-        new EclipseLinkTestPersonCollection().getAllPersons();
+        new TestPersonCollectionJPA(ECLIPSELINK).getAllPersons();
     }
 
     @Benchmark
@@ -232,7 +196,7 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonColHibernateMethod() {
-        new HibernateTestPersonCollection().getAllPersons();
+        new TestPersonCollectionJPA(HIBERNATE).getAllPersons();
     }
 
     @Benchmark
@@ -242,6 +206,6 @@ public class testGet {
     @Measurement(iterations = 10)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void getTestPersonColOpenJPAMethod() {
-        new OpenJPATestPersonCollection().getAllPersons();
+        new TestPersonCollectionJPA(OPENJPA).getAllPersons();
     }
 }

@@ -1,19 +1,23 @@
 package ru.jpa.tests.TestJPQLPerson.test;
 
 import ru.jpa.tests.TestJPQLPerson.model.SimplePerson;
-import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.tests.imp.ITestJPQLPerson;
-import ru.jpa.utils.OpenJPAUtil;
+import ru.jpa.utils.UtilJPA;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
+public class TestPersonJPQL implements ITestJPQLPerson {
+    public String entityManagerName;
+
+    public TestPersonJPQL(String entityManagerName) {
+        this.entityManagerName = entityManagerName;
+    }
 
     @Override
     public void JPQLUpdate(){
-        EntityManager entityManager = OpenJPAUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("update SimplePerson sp set sp.firstName = :nameParam");
         query.setParameter("nameParam", "testName");
@@ -24,7 +28,7 @@ public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
 
     @Override
     public void JPQLDelete(){
-        EntityManager entityManager = OpenJPAUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();
         entityManager.createQuery("delete from SimplePerson").executeUpdate();;
         entityManager.getTransaction().commit();
@@ -33,7 +37,7 @@ public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
 
     @Override
     public void JPQLSelect(){
-        EntityManager entityManager = OpenJPAUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();
 
         Query query = entityManager.createQuery( "select sp.firstName from SimplePerson sp" );
@@ -48,7 +52,7 @@ public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
     @Override
     public void JPQLWithPagination()
     {
-        EntityManager entityManager = OpenJPAUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();
 
         Query query = entityManager.createQuery( "select sp.firstName from SimplePerson sp" );
@@ -63,7 +67,7 @@ public class OpenJPATestPersonJPQL implements ITestJPQLPerson {
 
     @Override
     public void save(int num) {
-        EntityManager entityManager = OpenJPAUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();
         for (int i = 0; i < num; i++) {
             entityManager.persist(new SimplePerson());

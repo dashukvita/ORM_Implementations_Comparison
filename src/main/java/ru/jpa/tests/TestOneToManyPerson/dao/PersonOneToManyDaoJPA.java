@@ -2,19 +2,17 @@ package ru.jpa.tests.TestOneToManyPerson.dao;
 
 import ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany;
 import ru.jpa.tests.TestOneToManyPerson.model.PersonOneToMany;
-import ru.jpa.utils.OpenJPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Iterator;
 import java.util.List;
 
-public class PersonOneToManyDaoOpenJPA {
+public class PersonOneToManyDaoJPA {
     private List<PersonOneToMany> persons;
     private EntityManager entityManager;
 
-    public void save(int num) {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public void save(int num, EntityManager entityManager) {
         entityManager.getTransaction().begin();
 
         for (int i = 0; i < num; i++) {
@@ -35,16 +33,14 @@ public class PersonOneToManyDaoOpenJPA {
         entityManager.close();
     }
 
-    public List<PersonOneToMany> getAllPersons(){
-        entityManager = OpenJPAUtil.getEntityManager();
+    public List<PersonOneToMany> getAllPersons(EntityManager entityManager){
         Query q = entityManager.createQuery("SELECT p from PersonOneToMany p");
         persons = (List<PersonOneToMany>)q.getResultList();
         entityManager.close();
         return persons;
     }
 
-    public void delete(PersonOneToMany person) {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public void delete(PersonOneToMany person, EntityManager entityManager) {
         entityManager.getTransaction().begin();
 
         PersonOneToMany findPerson = entityManager.find(PersonOneToMany.class, person.getPerson_id());
@@ -58,8 +54,7 @@ public class PersonOneToManyDaoOpenJPA {
         entityManager.close();
     }
 
-    public void update(PersonOneToMany person) {
-        entityManager = OpenJPAUtil.getEntityManager();
+    public void update(PersonOneToMany person, EntityManager entityManager) {
         entityManager.getTransaction().begin();
 
         PersonOneToMany findPerson = entityManager.find(PersonOneToMany.class, person.getPerson_id());

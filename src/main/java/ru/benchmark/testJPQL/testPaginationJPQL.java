@@ -6,10 +6,8 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import ru.jpa.tests.TestJPQLPerson.model.SimplePerson;
-import ru.jpa.tests.TestJPQLPerson.test.EclipseLinkTestPersonJPQL;
-import ru.jpa.tests.TestJPQLPerson.test.HibernateTestPersonHQL;
-import ru.jpa.tests.TestJPQLPerson.test.OpenJPATestPersonJPQL;
-import ru.jpa.utils.EclipseLinkUtil;
+import ru.jpa.tests.TestJPQLPerson.test.TestPersonJPQL;
+import ru.jpa.utils.UtilJPA;
 
 import javax.persistence.EntityManager;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +15,9 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class testPaginationJPQL {
     public int num = 1000;
+    private final String HIBERNATE = "hibernate";
+    private final String ECLIPSELINK = "eclipselink";
+    private final String OPENJPA = "openjpa";
 
     public static void main(String[] args) throws RunnerException {
         System.err.close();
@@ -32,7 +33,7 @@ public class testPaginationJPQL {
     }
 
     public void createEntityForTest(){
-        EntityManager entityManager = EclipseLinkUtil.getEntityManager();
+        EntityManager entityManager = UtilJPA.getEntityManager(HIBERNATE);
         entityManager.getTransaction().begin();
         for (int i = 0; i < num; i++) {
             entityManager.persist(new SimplePerson());
@@ -48,7 +49,7 @@ public class testPaginationJPQL {
     @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void paginationEclipseLink() {
-        new EclipseLinkTestPersonJPQL().JPQLWithPagination();
+        new TestPersonJPQL(ECLIPSELINK).JPQLWithPagination();
     }
 
     @Benchmark
@@ -58,7 +59,7 @@ public class testPaginationJPQL {
     @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void paginationHibernate() {
-        new HibernateTestPersonHQL().JPQLWithPagination();
+        new TestPersonJPQL(HIBERNATE).JPQLWithPagination();
     }
 
     @Benchmark
@@ -68,6 +69,6 @@ public class testPaginationJPQL {
     @Measurement(iterations = 3)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void paginationOpenJPA() {
-        new OpenJPATestPersonJPQL().JPQLWithPagination();
+        new TestPersonJPQL(OPENJPA).JPQLWithPagination();
     }
 }

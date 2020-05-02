@@ -2,7 +2,6 @@ package ru.jpa.tests.TestIndexedPerson.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import ru.jpa.tests.TestIndexedPerson.model.PersonIndexed;
-import ru.jpa.tests.TestPerson.model.Person;
 import ru.jpa.utils.MyBatisUtil;
 import java.util.List;
 
