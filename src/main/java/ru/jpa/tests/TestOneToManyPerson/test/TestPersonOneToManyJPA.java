@@ -33,7 +33,7 @@ public class TestPersonOneToManyJPA implements ITestOneToManyAndCollection {
     }
 
     @Override
-    public void deletePerson() {
+    public void updatePerson() {
         dao = new PersonOneToManyDaoJPA();
         EntityManager entMgr = UtilJPA.getEntityManager(this.entityManagerName);
         List<PersonOneToMany> persons = dao.getAllPersons(entMgr);
@@ -44,7 +44,7 @@ public class TestPersonOneToManyJPA implements ITestOneToManyAndCollection {
         });
     }
 
-    public void updatePerson() {
+    public void deletePerson() {
         dao = new PersonOneToManyDaoJPA();
         EntityManager entMgr = UtilJPA.getEntityManager(this.entityManagerName);
         List<PersonOneToMany> persons = dao.getAllPersons(entMgr);

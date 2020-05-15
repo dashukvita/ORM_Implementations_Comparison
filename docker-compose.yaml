@@ -1,0 +1,82 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: mysqldatabase
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "33333:3306"
+    container_name: mysql-db
+    volumes:
+      - db-data:/var/lib/mysql
+
+#  db-marina:
+#    image: mariadb
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: example
+#
+#  adminer-marina:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - 8080:8080
+
+
+  dbpostgres:
+    image: postgres
+    volumes:
+      - ${PWD}/postgresql:/var/lib/postgresql
+    ports:
+      - "54321:5432"
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+      POSTGRES_DB: pgdb
+
+  mariadb:
+    image: mariadb:10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: mybb
+      MYSQL_USER: mybb
+      MYSQL_PASSWORD: changeme
+    ports:
+      - "33331:3306"
+    restart: on-failure
+    volumes:
+      - ${PWD}/mariadb:/var/lib/mysql
+
+  sqlite3:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
+
+  orientdb:
+    image: orientdb:2.2.37
+    environment:
+      - "ORIENTDB_ROOT_PASSWORD=dalongdemo"
+    tty: true
+    volumes:
+      - "./config:/orientdb/config"
+      - "./databases:/orientdb/databases"
+      - "./backup:/orientdb/backup"
+      - "./db:/db"
+    ports:
+      - "2424:2424"
+      - "2480:2480"
+
+volumes:
+  db-data:
+    driver: local
+
+# docker-compose down
+#  $ docker-compose up -d
+#  $ docker start mysql-db
+#  docker ps
+# docker-compose down
