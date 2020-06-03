@@ -18,14 +18,22 @@
         <class>ru.jpa.tests.TestJPQLPerson.model.SimplePerson</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
-            <!--        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>-->
-            <!--        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>-->
-            <!--        <property name="hibernate.connection.username">postgres</property>-->
-            <!--        <property name="hibernate.connection.password">12345</property>-->
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mysql" />
-            <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="12345" />
+
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:54321/pgdb" />
+            <property name="hibernate.connection.username" value="pguser" />
+            <property name="hibernate.connection.password" value="pguser" />
+
+<!--            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />-->
+<!--            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:33333/mysqldatabase" />-->
+<!--            <property name="hibernate.connection.username" value="mysql" />-->
+<!--            <property name="hibernate.connection.password" value="mysql" />-->
+
+<!--            <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver" />-->
+<!--            <property name="hibernate.connection.url" value="jdbc:mariadb://localhost:33331/mybb" />-->
+<!--            <property name="hibernate.connection.username" value="mybb" />-->
+<!--            <property name="hibernate.connection.password" value="changeme" />-->
+
             <property name="show_sql" value="false" />
         </properties>
     </persistence-unit>
@@ -47,10 +55,21 @@
             <property name="openjpa.Log" value="File=openjpa.log, DefaultLevel=WARN, Runtime=INFO, Tool=INFO"/>
             <property name="openjpa.DynamicEnhancementAgent" value="true"/>
             <property name="openjpa.RuntimeUnenhancedClasses" value="supported" />
+
             <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
-            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/postgres" />
-            <property name="openjpa.ConnectionUserName" value="postgres" />
-            <property name="openjpa.ConnectionPassword" value="12345" />
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:54321/pgdb" />
+            <property name="openjpa.ConnectionUserName" value="pguser" />
+            <property name="openjpa.ConnectionPassword" value="pguser" />
+
+<!--            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver" />-->
+<!--            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:33333/mysqldatabase" />-->
+<!--            <property name="openjpa.ConnectionUserName" value="mysql" />-->
+<!--            <property name="openjpa.ConnectionPassword" value="mysql" />-->
+
+<!--            <property name="openjpa.ConnectionDriverName" value="org.mariadb.jdbc.Driver" />-->
+<!--            <property name="openjpa.ConnectionURL" value="jdbc:mariadb://localhost:33331/mybb" />-->
+<!--            <property name="openjpa.ConnectionUserName" value="mybb" />-->
+<!--            <property name="openjpa.ConnectionPassword" value="changeme" />-->
         </properties>
     </persistence-unit>
 
@@ -68,11 +87,22 @@
         <class>ru.jpa.tests.TestOneToManyPerson.model.AddressOneToMany</class>
         <class>ru.jpa.tests.TestJPQLPerson.model.SimplePerson</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
-            <property name="javax.persistence.jdbc.user" value="postgres" />
-            <property name="javax.persistence.jdbc.password" value="12345" />
             <property name="eclipselink.logging.file" value="eclipselink.log"/>
+
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:54321/pgdb" />
+            <property name="javax.persistence.jdbc.user" value="pguser" />
+            <property name="javax.persistence.jdbc.password" value="pguser" />
+
+<!--            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:33333/mysqldatabase" />-->
+<!--            <property name="javax.persistence.jdbc.user" value="mysql" />-->
+<!--            <property name="javax.persistence.jdbc.password" value="mysql" />-->
+
+<!--            <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver" />-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:33331/mybb" />-->
+<!--            <property name="javax.persistence.jdbc.user" value="mybb" />-->
+<!--            <property name="javax.persistence.jdbc.password" value="changeme" />-->
         </properties>
     </persistence-unit>
 
