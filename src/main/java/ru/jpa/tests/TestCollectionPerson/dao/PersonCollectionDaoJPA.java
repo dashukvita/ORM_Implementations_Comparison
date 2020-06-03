@@ -8,11 +8,9 @@ import java.util.List;
 
 public class PersonCollectionDaoJPA {
 
-    public void save(int num, EntityManager entityManager) {
+    public void save(EntityManager entityManager) {
         entityManager.getTransaction().begin();
-        for (int i = 0; i < num; i++) {
-            entityManager.persist(new PersonCollection());
-        }
+        entityManager.persist(new PersonCollection());
         entityManager.getTransaction().commit();
         entityManager.close();
     }

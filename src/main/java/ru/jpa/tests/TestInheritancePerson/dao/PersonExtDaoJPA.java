@@ -8,11 +8,9 @@ import java.util.List;
 
 public class PersonExtDaoJPA {
 
-    public void save(int num, EntityManager entityManager) {
+    public void save(EntityManager entityManager) {
         entityManager.getTransaction().begin();
-        for (int i = 0; i < num; i++) {
-            entityManager.persist(new PersonExtExt());
-        }
+        entityManager.persist(new PersonExtExt());
         entityManager.getTransaction().commit();
         entityManager.close();
     }

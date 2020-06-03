@@ -55,9 +55,8 @@ public class TestPersonJPQL implements ITestJPQLPerson {
         EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();
 
-        Query query = entityManager.createQuery( "select sp.firstName from SimplePerson sp" );
-        query.setFirstResult( 1 );
-        query.setMaxResults( 9 );
+        Query query = entityManager.createQuery( "select sp.lastName from SimplePerson sp" );
+        query.getResultList();
         List<String> list = (List<String>) query.getResultList();
 //        list.forEach(personName -> System.out.println(personName));
 

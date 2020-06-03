@@ -12,9 +12,10 @@ public class TestPersonOneToManyMyBatis implements ITestOneToManyAndCollection{
 
     @Override
     public void createPerson(int num) {
-        PersonOneToMany person = new PersonOneToMany();
         dao= new PersonOneToManyDaoMyBatis();
-        dao.save(num);
+        for (int i = 0; i < num; i++) {
+            dao.save();
+        }
     }
 
     @Override

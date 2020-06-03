@@ -6,11 +6,9 @@ import ru.jpa.utils.MyBatisUtil;
 import java.util.List;
 
 public class PersonIndexedDaoMyBatis {
-    public void save(int num) {
+    public void save() {
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        for (int i = 0; i < num; i++) {
-            session.insert("ru.mapper.mybatis.PersonIndexedMapper.insertPerson", new PersonIndexed());
-        }
+        session.insert("ru.mapper.mybatis.PersonIndexedMapper.insertPerson", new PersonIndexed());
         session.commit();
         session.close();
     }

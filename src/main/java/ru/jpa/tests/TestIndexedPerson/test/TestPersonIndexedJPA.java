@@ -18,9 +18,11 @@ public class TestPersonIndexedJPA implements ITeastPersonAndPersonIndexed {
 
     @Override
     public void createPerson(int num) {
-        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         dao = new PersonIndexedDaoJPA();
-        dao.save(num, entityManager);
+        for (int i = 0; i < num; i++) {
+            EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
+            dao.save(entityManager);
+        }
     }
 
     @Override

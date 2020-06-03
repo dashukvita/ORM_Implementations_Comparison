@@ -13,8 +13,10 @@ public class TestPersonMyBatis implements ITeastPersonAndPersonIndexed {
 
     @Override
     public void createPerson(int num) {
-        dao= new PersonDaoMyBatis();
-        dao.save(num);
+        for (int i = 0; i < num; i++) {
+            dao= new PersonDaoMyBatis();
+            dao.save();
+        }
     }
 
     @Override

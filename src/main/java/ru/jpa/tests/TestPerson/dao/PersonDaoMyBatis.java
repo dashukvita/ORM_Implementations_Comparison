@@ -7,11 +7,9 @@ import ru.jpa.utils.MyBatisUtil;
 import java.util.List;
 
 public class PersonDaoMyBatis {
-    public void save(int num){
+    public void save(){
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
-        for (int i = 0; i < num; i++) {
-            session.insert("ru.mapper.mybatis.PersonMapper.insertPerson", new Person());
-        }
+        session.insert("ru.mapper.mybatis.PersonMapper.insertPerson", new Person());
         session.commit();
         session.close();
     }

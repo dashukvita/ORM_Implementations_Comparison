@@ -9,19 +9,18 @@ import java.util.List;
 
 public class PersonOneToManyDaoMyBatis {
 
-    public void save(int num){
+    public void save(){
         SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 
-        for (int i = 0; i < num; i++) {
-            PersonOneToMany person = new PersonOneToMany();
-            AddressOneToMany homeAddress = new AddressOneToMany();
-            AddressOneToMany workAddress = new AddressOneToMany();
-            session.insert("ru.mapper.mybatis.PersonOneToManyMapper.insertPerson", person);
-            homeAddress.setPerson(person);
-            workAddress.setPerson(person);
-            session.insert("ru.mapper.mybatis.AddressOneToManyMapper.insertPerson", homeAddress);
-            session.insert("ru.mapper.mybatis.AddressOneToManyMapper.insertPerson", workAddress);
-        }
+        PersonOneToMany person = new PersonOneToMany();
+        AddressOneToMany homeAddress = new AddressOneToMany();
+        AddressOneToMany workAddress = new AddressOneToMany();
+        session.insert("ru.mapper.mybatis.PersonOneToManyMapper.insertPerson", person);
+        homeAddress.setPerson(person);
+        workAddress.setPerson(person);
+        session.insert("ru.mapper.mybatis.AddressOneToManyMapper.insertPerson", homeAddress);
+        session.insert("ru.mapper.mybatis.AddressOneToManyMapper.insertPerson", workAddress);
+
         session.commit();
         session.close();
     }

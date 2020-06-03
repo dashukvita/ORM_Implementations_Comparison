@@ -18,9 +18,11 @@ public class TestPersonOneToManyJPA implements ITestOneToManyAndCollection {
 
     @Override
     public void createPerson(int num) {
-        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         dao = new PersonOneToManyDaoJPA();
-        dao.save(num, entityManager);
+        for (int i = 0; i < num; i++) {
+            EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
+            dao.save(entityManager);
+        }
     }
 
     @Override

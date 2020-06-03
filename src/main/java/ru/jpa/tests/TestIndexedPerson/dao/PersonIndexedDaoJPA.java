@@ -8,11 +8,9 @@ import java.util.List;
 
 public class PersonIndexedDaoJPA {
 
-    public void save(int num, EntityManager entityManager) {
+    public void save(EntityManager entityManager) {
         entityManager.getTransaction().begin();
-        for (int i = 0; i < num; i++) {
-            entityManager.persist(new PersonIndexed());
-        }
+        entityManager.persist(new PersonIndexed());
         entityManager.getTransaction().commit();
         entityManager.close();
     }

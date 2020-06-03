@@ -12,22 +12,20 @@ public class PersonOneToManyDaoJPA {
     private List<PersonOneToMany> persons;
     private EntityManager entityManager;
 
-    public void save(int num, EntityManager entityManager) {
+    public void save(EntityManager entityManager) {
         entityManager.getTransaction().begin();
 
-        for (int i = 0; i < num; i++) {
-            PersonOneToMany person = new PersonOneToMany();
-            AddressOneToMany homeAddress = new AddressOneToMany();
-            AddressOneToMany workAddress = new AddressOneToMany();
-            person.getAddresses().add(homeAddress);
-            person.getAddresses().add(workAddress);
-            entityManager.persist(person);
+        PersonOneToMany person = new PersonOneToMany();
+        AddressOneToMany homeAddress = new AddressOneToMany();
+        AddressOneToMany workAddress = new AddressOneToMany();
+        person.getAddresses().add(homeAddress);
+        person.getAddresses().add(workAddress);
+        entityManager.persist(person);
 
-            homeAddress.setPerson(person);
-            workAddress.setPerson(person);
-            entityManager.persist(homeAddress);
-            entityManager.persist(workAddress);
-        }
+        homeAddress.setPerson(person);
+        workAddress.setPerson(person);
+        entityManager.persist(homeAddress);
+        entityManager.persist(workAddress);
 
         entityManager.getTransaction().commit();
         entityManager.close();

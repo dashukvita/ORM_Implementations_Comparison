@@ -1,37 +1,37 @@
 package ru.benchmark.testTransactions;
 
 import ru.jpa.tests.TestCollectionPerson.dao.PersonCollectionDaoJPA;
+import ru.jpa.tests.TestCollectionPerson.test.TestPersonCollectionJPA;
 import ru.jpa.tests.TestIndexedPerson.dao.PersonIndexedDaoJPA;
+import ru.jpa.tests.TestIndexedPerson.test.TestPersonIndexedJPA;
 import ru.jpa.tests.TestInheritancePerson.dao.PersonExtDaoJPA;
+import ru.jpa.tests.TestInheritancePerson.test.TestPersonExtJPA;
 import ru.jpa.tests.TestOneToManyPerson.dao.PersonOneToManyDaoJPA;
+import ru.jpa.tests.TestOneToManyPerson.test.TestPersonOneToManyJPA;
 import ru.jpa.tests.TestPerson.dao.PersonDaoJPA;
+import ru.jpa.tests.TestPerson.test.TestPersonJPA;
+import ru.jpa.tests.TestPerson.test.TestPersonMyBatis;
 import ru.jpa.utils.UtilJPA;
 
 import javax.persistence.EntityManager;
 
 public class EntityForTest {
     private final String ENTITYNAME = "hibernate";
-    private EntityManager entityManager;
 
     public void createEntityForTest(int num){
-        PersonDaoJPA dao = new PersonDaoJPA();
-        entityManager = UtilJPA.getEntityManager(ENTITYNAME);
-        dao.save(num, entityManager);
+        TestPersonJPA testPersonJPA = new TestPersonJPA(ENTITYNAME);
+        testPersonJPA.createPerson(num);
 
-        PersonOneToManyDaoJPA daoOtM = new PersonOneToManyDaoJPA();
-        entityManager = UtilJPA.getEntityManager(ENTITYNAME);
-        daoOtM.save(num, entityManager);
+        TestPersonOneToManyJPA testPersonOneToManyJPA = new TestPersonOneToManyJPA(ENTITYNAME);
+        testPersonOneToManyJPA.createPerson(num);
 
-        PersonExtDaoJPA daoExt = new PersonExtDaoJPA();
-        entityManager = UtilJPA.getEntityManager(ENTITYNAME);
-        daoExt.save(num, entityManager);
+        TestPersonExtJPA testPersonExtJPA = new TestPersonExtJPA(ENTITYNAME);
+        testPersonExtJPA.createPerson(num);
 
-        PersonIndexedDaoJPA daoInd = new PersonIndexedDaoJPA();
-        entityManager = UtilJPA.getEntityManager(ENTITYNAME);
-        daoInd.save(num, entityManager);
+        TestPersonIndexedJPA testPersonIndexedJPA = new TestPersonIndexedJPA(ENTITYNAME);
+        testPersonIndexedJPA.createPerson(num);
 
-        PersonCollectionDaoJPA daoCol = new PersonCollectionDaoJPA();
-        entityManager = UtilJPA.getEntityManager(ENTITYNAME);
-        daoCol.save(num, entityManager);
+        TestPersonCollectionJPA testPersonCollectionJPA = new TestPersonCollectionJPA(ENTITYNAME);
+        testPersonCollectionJPA.createPerson(num);
     }
 }
