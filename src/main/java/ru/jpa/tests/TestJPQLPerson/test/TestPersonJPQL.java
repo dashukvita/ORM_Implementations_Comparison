@@ -27,6 +27,29 @@ public class TestPersonJPQL implements ITestJPQLPerson {
     }
 
     @Override
+    public void JPQLCount(){
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
+        entityManager.getTransaction().begin();
+        List l = entityManager.createQuery("select count(sp) from SimplePerson sp ").getResultList();
+//        System.out.println(l);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    @Override
+    public void JPQLWhere(){
+        EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
+        entityManager.getTransaction().begin();
+        List l = entityManager.createQuery("select sp from SimplePerson sp where sp.loginCount > 9").getResultList();
+//        for (Object person: l) {
+//            System.out.println(person);
+//        }
+//        System.out.println(l);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    @Override
     public void JPQLDelete(){
         EntityManager entityManager = UtilJPA.getEntityManager(this.entityManagerName);
         entityManager.getTransaction().begin();

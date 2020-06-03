@@ -7,6 +7,8 @@ public interface ITestJPQLPerson extends CrudEntitier {
     void JPQLWithPagination();
     void JPQLSelect();
     void JPQLDelete();
+    void JPQLCount();
+    void JPQLWhere();
 
     default void crudEntity(int num) {
         TimeBenchmark timeBenchmark = new TimeBenchmark();
@@ -18,6 +20,10 @@ public interface ITestJPQLPerson extends CrudEntitier {
         timeBenchmark.measure(this::JPQLSelect);
         System.out.println("------------------JPQL With Pagination");
         timeBenchmark.measure(this::JPQLWithPagination);
+        System.out.println("------------------JPQL Count");
+        timeBenchmark.measure(this::JPQLCount);
+        System.out.println("------------------JPQL Where");
+        timeBenchmark.measure(this::JPQLWhere);
         System.out.println("------------------JPQL Delete");
         timeBenchmark.measure(this::JPQLDelete);
     }
